@@ -6,6 +6,9 @@ categories: 数字信号处理
 tags: [FIR滤波器, 窗函数]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/FIR-Filter-Design-1.png
+  alt: "2.使用窗函数设计FIR滤波器"
 ---
 
 在上一篇文章中，我们介绍了FIR滤波器的基本概念和实现方法。本文将继续深入探讨FIR滤波器的设计方法，特别是使用窗函数法进行设计的过程。

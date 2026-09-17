@@ -6,6 +6,9 @@ categories: 数字信号处理
 tags: [IIR滤波器, 滤波器设计]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/IIR-Filter.png
+  alt: "4.IIR滤波器基础"
 ---
 
 在前文中，我们深入探讨了FIR滤波器的理论基础与实现方法。本节我们将把目光转向另一类重要的数字滤波器——无限冲击响应(IIR)滤波器。顾名思义，IIR滤波器最显著的特征在于其单位冲击响应序列具有无限长度的特性。从系统理论的角度来看，一个通用的数字滤波器可以用如下$N$阶差分方程来描述：

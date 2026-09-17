@@ -5,6 +5,9 @@ date:  2013-11-17 14:59:52 +0800
 categories: 数字图像处理
 tags: [图像处理, 图像重采样]
 math: true
+image:
+  path: /assets/resource/og/Image-Resize-1.png
+  alt: "Image Resize : 数字图像的整数倍扩大"
 ---
 
 ### 引言

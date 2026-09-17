@@ -5,6 +5,9 @@ date: 2013-12-08 18:02:49 +0800
 categories: 数字图像处理
 tags: [图像处理, 频域滤波]
 math: true
+image:
+  path: /assets/resource/og/Frequency-Domain-Filter-3.png
+  alt: "Frequency Domain Filter : 带阻滤波器与陷波滤波器"
 ---
 
 ### 带阻滤波器

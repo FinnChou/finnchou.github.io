@@ -5,6 +5,9 @@ date: 2013-05-29 13:01:47 +0800
 categories: 数字信号处理
 tags: [FIR滤波器, 频率响应]
 math: true
+image:
+  path: /assets/resource/og/FIR-Filter-Design-2.png
+  alt: "3.单位冲击响应，频响与FIR滤波器实现"
 ---
 
 根据前文的理论分析，具有如下图所示单位冲击响应特性的理想滤波器在实际系统中是不可实现的。这种不可实现性源于其非因果特性。

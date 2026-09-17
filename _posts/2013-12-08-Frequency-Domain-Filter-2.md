@@ -5,6 +5,9 @@ date: 2013-12-08 18:02:49 +0800
 categories: 数字图像处理
 tags: [图像处理, 频域滤波]
 math: true
+image:
+  path: /assets/resource/og/Frequency-Domain-Filter-2.png
+  alt: "Frequency Domain Filter : 高通滤波器"
 ---
 
 首先，我们对图像进行二维傅里叶变换，其表达式为：

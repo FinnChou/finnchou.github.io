@@ -5,6 +5,9 @@ date:  2013-11-17 16:04:33 +0800
 categories: 数字图像处理
 tags: [图像处理, 图像重采样]
 math: true
+image:
+  path: /assets/resource/og/Image-Resize-2.png
+  alt: "Image Resize : 数字图像的整数倍缩小"
 ---
 
 本文参考了貴家仁志先生在**よくわかる動画・静止画の処理技術**系列中的1-3期内容[^footnote1][^footnote2][^footnote3]。

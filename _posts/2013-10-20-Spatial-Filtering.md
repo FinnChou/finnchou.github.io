@@ -5,6 +5,9 @@ date: 2013-10-20 17:28:04 +0800
 categories: 数字图像处理
 tags: [图像处理, 空间滤波]
 math: true
+image:
+  path: /assets/resource/og/Spatial-Filtering.png
+  alt: "Spatial Filtering : 空间滤波"
 ---
 
 ## 引言
