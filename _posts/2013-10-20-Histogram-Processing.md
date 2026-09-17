@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Histogtam Processing : 直方图处理"
+title: "Histogram Processing : 直方图处理"
 date: 2013-10-20 15:47:36 +0800
 categories: 数字图像处理
 tags: [图像处理, 直方图处理]
@@ -15,21 +15,21 @@ math: true
 
 $$
 \begin{aligned}
-{P_{s} = \frac{n_k}{M * N}}
+{P_{s}(s_k) = \frac{n_k}{M * N}}
 \end{aligned}
 $$
 
-在这里，$P_{s}$代表了像素的灰度值为$k$的概率。 其中，$M$与$N$为图像的尺寸。对于一幅动态范围较窄的图像，其归一化灰度直方图如下所示。
+在这里，$P_{s}(s_k)$代表了像素的灰度值为$k$的概率。 其中，$M$与$N$为图像的尺寸。对于一幅动态范围较窄的图像，其归一化灰度直方图如下所示。
 
-![直方图示例](/assets/resource/Histogtam-Processing/Histogtam-Show.jpeg){: width="600" height="600"}
+![直方图示例](/assets/resource/Histogram-Processing/Histogram-Show.jpeg){: width="600" height="600"}
 
 对于动态范围较窄的图像，应用灰度拉伸可以有效改善其动态范围并增强图像对比度。然而，灰度拉伸本质上是一种模糊的处理方法，它并没有明确的目的。灰度拉伸仅依赖某个函数进行灰度变换，从而扩大图像在灰度直方图中的分布范围。由于灰度拉伸对结果没有严格的要求，因此根据不同的变换函数，可以产生无数种结果。
 
-与灰度拉伸不同，直方图均衡的目的则更加明确。它使用特定的函数来实现原图像灰度分布的平均化。为了达到这一目标，我们需要引入累积分布函数（Probability Density Function）的概念，即：
+与灰度拉伸不同，直方图均衡的目的则更加明确。它使用特定的函数来实现原图像灰度分布的平均化。为了达到这一目标，我们需要引入累积分布函数（Cumulative Distribution Function）的概念，即：
 
 $$
 \begin{aligned}
-{r = T_{s} = \int_{0}^{r} P_{s}(w) dw, \hspace{3mm} s \in [0,1]}
+{r = T_{s} = \int_{0}^{s} P_{s}(w) dw, \hspace{3mm} s \in [0,1]}
 \end{aligned}
 $$
 
@@ -38,10 +38,10 @@ $$
 <table>
     <tr>
         <td> 
-            <img src="/assets/resource/Histogtam-Processing/Histogtam-Original.jpeg" alt="原始直方图" width="600" height="600">
+            <img src="/assets/resource/Histogram-Processing/Histogram-Original.jpeg" alt="原始直方图" width="600" height="600">
         </td>
         <td> 
-            <img src="/assets/resource/Histogtam-Processing/Histogram-Equalization-PDF.jpeg" alt="目标PDF分布" width="600" height="600">
+            <img src="/assets/resource/Histogram-Processing/Histogram-PDF-target.jpeg" alt="目标PDF分布" width="600" height="600">
         </td>
     </tr>
 </table> 
@@ -58,7 +58,7 @@ $$
 
 $$
 \begin{aligned}
-\frac{dr}{ds} = \frac{dT_s}{ds} = \frac{d}{ds}\left[ \int_{0}^{r} P_{s}(w) dw\right] = P_s(s)
+\frac{dr}{ds} = \frac{dT_s}{ds} = \frac{d}{ds}\left[ \int_{0}^{s} P_{s}(w) dw\right] = P_s(s)
 \end{aligned}
 $$
 
@@ -74,7 +74,7 @@ $$
 
 $$
 \begin{aligned}
-{r = T_{s} = \sum_{j=0}^{k} P_r(r_k) = \frac{ \sum_{j=0}^{k} n_j }{M*N} , \hspace{3mm} k \in [0, L-1]}
+{r = T_{s} = \sum_{j=0}^{k} P_s(s_j) = \frac{ \sum_{j=0}^{k} n_j }{M*N} , \hspace{3mm} k \in [0, L-1]}
 \end{aligned}
 $$
 
@@ -163,17 +163,17 @@ ylabel('P_{s}(s)');
 
 其直方图均衡后的图像与灰度直方图如下所示。
 
-![直方图均衡结果](/assets/resource/Histogtam-Processing/Histogram-Equalization-Res.jpeg){: width="600" height="600"}
+![直方图均衡结果](/assets/resource/Histogram-Processing/Histogram-Equalization-Res.jpeg){: width="600" height="600"}
 
 结果显示，经过直方图均衡处理后的直方图相比于原图，确实扩大了动态范围。然而，根据公式，直方图均衡算法应当生成一个"均衡"的、与$k$值无关的"白化"直方图。然而，从实际的直方图来看，这一条件显然没有得到满足。为了解释这一现象，我们将原图像的累积分布函数与经过直方图均衡后的累积分布函数进行对比，如下所示。
 
 <table>
     <tr>
         <td> 
-            <img src="/assets/resource/Histogtam-Processing/Histogtam-Original.jpeg" alt="原始直方图" width="600" height="600">
+            <img src="/assets/resource/Histogram-Processing/Histogram-Original.jpeg" alt="原始直方图" width="600" height="600">
         </td>
         <td> 
-            <img src="/assets/resource/Histogtam-Processing/Histogram-Equalization-PDF.jpeg" alt="目标PDF分布" width="600" height="600">
+            <img src="/assets/resource/Histogram-Processing/Histogram-Equalization-PDF.jpeg" alt="均衡后的累积分布" width="600" height="600">
         </td>
     </tr>
 </table> 
@@ -187,7 +187,7 @@ ylabel('P_{s}(s)');
 
 例如，以下这张图像（来源于《Digital Image Processing》Rafael C. Gonzalez / Richard E. Woods）展示了使用直方图均衡处理后的结果。
 
-![直方图均衡结果2](/assets/resource/Histogtam-Processing/Histogram-Equalization-Res2.jpeg){: width="600" height="600"}
+![直方图均衡结果2](/assets/resource/Histogram-Processing/Histogram-Equalization-Res2.jpeg){: width="600" height="600"}
 
 如上图所示，直方图均衡的结果并未达到理想状态。与原图相比，尽管一些细节得以显现，但仍然存在改进的余地。通过适当的调整，我们可以实现更为理想的增强效果。
 
@@ -195,11 +195,11 @@ ylabel('P_{s}(s)');
 
 $$
 \begin{aligned}
-{r = T_{s} = \sum_{j=0}^{k} P_r(r_k) = \frac{ \sum_{j=0}^{k} n_j }{M*N} , \hspace{3mm} k \in [0, L-1]}
+{r = T_{s} = \sum_{j=0}^{k} P_s(s_j) = \frac{ \sum_{j=0}^{k} n_j }{M*N} , \hspace{3mm} k \in [0, L-1]}
 \end{aligned}
 $$
 
-直方图匹配，是将图像对齐到了直方图的分布保持一个常量的"白化"分布上。如果我们有一个期待的概率分布是非"白化"的分布函数 $G(Z_q)$， 那么对于直方图匹配这个算法而言，其目的就是对执行完算法的图像 $s$ 其分布和 $G(Z_q)$ 一致。也就是
+直方图均衡，是将图像对齐到了直方图的分布保持一个常量的"白化"分布上。如果我们有一个期待的概率分布是非"白化"的分布函数 $G(Z_q)$， 那么对于直方图匹配这个算法而言，其目的就是对执行完算法的图像 $s$ 其分布和 $G(Z_q)$ 一致。也就是
 
 $$
 \begin{aligned}
@@ -219,7 +219,7 @@ $$
 
 $$
 \begin{aligned}
-S_k = G^{-1}(S_k)
+Z_q = G^{-1}(S_k)
 \end{aligned}
 $$
 
@@ -231,7 +231,7 @@ $$
 
 以下是实现的直方图均衡结果展示。
 
-![直方图匹配结果](/assets/resource/Histogtam-Processing/Histogram-Matching.jpeg){: width="600" height="600"}
+![直方图匹配结果](/assets/resource/Histogram-Processing/Histogram-Matching.jpeg){: width="600" height="600"}
 
 根据直方图匹配的结果，我们可以观察到，所得结果与我们期望的分布非常接近。这一结果也符合我们的初衷，使得原图的直方图略微向左移动。与直方均衡相比，所获得的结果显著更为优越。
 
@@ -303,7 +303,7 @@ G_Negatives = zeros(256,1);
 Flag = 0;
 for k = 1:1:256
     for j = 1:1:256
-            if(uint8(G(j,1)*255) == k) 
+            if(uint8(G(j,1)*255) == k-1) 
                  G_Negatives(k,1) = (j-1)/255;
                  Flag = 1;
             end
