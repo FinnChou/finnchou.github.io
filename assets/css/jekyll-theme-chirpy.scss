@@ -33,10 +33,23 @@ article > header {
 }
 
 /*
- * 首页列表同理：卡片左边是标题，右边缩略图又是同一张标题卡，重复。
- * 隐藏整个图片列，让列表回到纯文字卡片。
- * 想改回“列表带缩略图”，把下面这条规则删掉即可。
+ * 首页列表同理：卡片右侧的缩略图又是同一张标题卡，与卡片里的标题重复。
+ *
+ * 光把图片列 display:none 是不够的——卡片是 .row.flex-md-row-reverse，
+ * 图片列（col-md-5）一消失，剩下的文字列（col-md-7）只占 7/12 且被 reverse
+ * 推到右边，左侧会空出一大块。所以隐藏的同时要让文字列撑满整行。
+ *
+ * 整块挂在 :has() 下：浏览器若不支持 :has()，两条规则一起失效，
+ * 退回“列表带缩略图”的原样，而不会只生效一半导致布局错乱。
  */
-#post-list .post-preview > div:has(> .preview-img) {
-  display: none;
+#post-list .post-preview:has(> div > .preview-img) {
+  > div:has(> .preview-img) {
+    display: none;
+  }
+
+  > .col-md-7 {
+    flex: 0 0 100%;
+    max-width: 100%;
+    width: 100%;
+  }
 }
