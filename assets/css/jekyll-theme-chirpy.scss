@@ -33,6 +33,23 @@ article > header {
 }
 
 /*
- * 首页列表的缩略图保留主题默认行为：那张标题卡放在卡片一侧当视觉元素效果不错。
- * 只有文章页顶部的大图被隐藏（见上），因为它紧挨着 <h1>，标题会重复两遍。
+ * 首页列表保留缩略图（文章页顶部的大图仍隐藏，见上），但把它从右侧挪到左侧。
+ *
+ * 两个要点：
+ * 1) 卡片用的是 Bootstrap 的 .flex-md-row-reverse，该工具类带 !important，
+ *    必须用更高特异性 + !important 才能覆盖；
+ * 2) 主题给缩略图设的圆角是 `0 10px 10px 0`（右上右下），是为“图在右”配的。
+ *    图挪到左边后要改成左上左下，否则图的直角会戳出卡片的圆边。
+ *
+ * 只在 md（768px）以上生效：小屏是上下堆叠、图在上方，保持主题原样。
  */
+@media (min-width: 768px) {
+  #post-list .post-preview.flex-md-row-reverse {
+    flex-direction: row !important;
+  }
+
+  #post-list .post-preview .preview-img,
+  #post-list .post-preview .preview-img img {
+    border-radius: 10px 0 0 10px;
+  }
+}
