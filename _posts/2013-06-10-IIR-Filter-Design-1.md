@@ -10,7 +10,7 @@ math: true
 
 在数字滤波器设计中,间接设计法是一种重要的方法。其基本思路是先根据给定参数设计模拟滤波器,然后通过变数变换得到数字滤波器。作为数字滤波器设计基础的模拟滤波器称为原型滤波器。本文将介绍最基础的原型滤波器——巴特沃斯低通滤波器。
 
-首先, 由于IIR滤波器不具有线性相位特性,因此我们只需考虑其振幅特性:
+首先需要说明的是,IIR滤波器一般无法实现严格的线性相位,因此在设计阶段通常只按振幅特性提出指标,相位若有要求则另行用全通网络校正。巴特沃斯低通滤波器的振幅特性如下:
 
 $$
 \begin{aligned}
@@ -43,7 +43,7 @@ N = \frac{1}{2} \frac{\log_{10} (10^{\frac{A_s}{10}} - 1)}{\log_{10} \left ( \fr
 \end{aligned}
 $$
 
-注意,$N$只能为正数,若结果为小数则需向上取整。
+注意,$N$只能为正整数,若结果为小数则需向上取整。
 
 &nbsp;
 ### 巴特沃斯滤波器的传递函数
@@ -73,7 +73,7 @@ $$
 \begin{aligned}
 1 - \left( \frac{s}{\Omega_c}  \right)^{2N} &= 0 \\
 \left( \frac{s}{\Omega_c}  \right)^{2N} &= e^{j2k\pi} \\
-s &= \Omega_c e^{j \frac{k}{2N}\pi}
+s &= \Omega_c e^{j \frac{k}{N}\pi}
 \end{aligned}
 $$
 
@@ -84,7 +84,7 @@ $$
 p_k = \left \{
 \begin{array}{l}
 \Omega_c \exp \left( j \frac{2k+1}{2N}\pi \right), \hspace{2mm}N: \text{even number}, \hspace{2mm}k=0,1,2,\cdots,2N-1 \\
-\Omega_c \exp \left( j \frac{k}{2N}\pi \right), \hspace{2mm}N: \text{odd number}, \hspace{2mm}k=0,1,2,\cdots,2N-1
+\Omega_c \exp \left( j \frac{k}{N}\pi \right), \hspace{2mm}N: \text{odd number}, \hspace{2mm}k=0,1,2,\cdots,2N-1
 \end{array}
 \right.
 \end{equation}
@@ -187,7 +187,7 @@ int Complex_Multiple(COMPLEX a,COMPLEX b,
 
 $$
 \begin{aligned}
-N=2, p_1 = a_1+ka_2, p_2 = b_1 + jb_2
+N=2, p_1 = a_1 + ja_2, p_2 = b_1 + jb_2
 \end{aligned}
 $$
 
@@ -195,7 +195,7 @@ $$
 
 $$
 \begin{aligned}
-H_a(s) = \frac{1}{(s-(a_1+ka_2))(s-(b_1+kb_2))}
+H_a(s) = \frac{\Omega_c^{2}}{(s-(a_1+ja_2))(s-(b_1+jb_2))}
 \end{aligned}
 $$
 
@@ -243,9 +243,9 @@ for(count_1 = 0;count_1 < N-1;count_1++)
 
 
 &nbsp;
-### 双1次z变换的原理
+### 双线性变换（双一次z变换）的原理
 
-双1次z变换是将模拟滤波器转换为数字滤波器的一种重要方法。通过建立s平面到z平面的映射关系，可以实现模拟滤波器到数字滤波器的转换。
+双线性变换（Bilinear Transform，日文文献中称「双一次z変換」）是将模拟滤波器转换为数字滤波器的一种重要方法。通过建立s平面到z平面的映射关系，可以实现模拟滤波器到数字滤波器的转换。
 
 让我们以一个简单的一阶模拟滤波器为例,其传递函数为:
 
@@ -255,7 +255,7 @@ H(s) = \frac{b}{s+a}
 \end{aligned}
 $$
 
-对其进行拉普拉斯逆变换,可得到时域连续微分方程:
+由该传递函数可以反推出其对应的时域连续微分方程（注意这一步是由$H(s)=Y(s)/X(s)$交叉相乘后逐项还原,而非做拉普拉斯逆变换——后者得到的是冲击响应$h(t)$）:
 
 $$
 \begin{aligned}
@@ -287,15 +287,15 @@ s = f(z) = \frac{2}{T} \frac{1 - z^{(-1)}}{1 + z^{(-1)}}
 \end{aligned}
 $$
 
-这个映射关系对高阶系统同样适用,因为高阶系统可以视为一阶系统的并联。
+这个映射关系对高阶系统同样适用:双线性变换本质上是对复变量$s$的一个有理代换,把它代入任意有理传递函数$H_a(s)$都成立,并不依赖系统的阶数。
 
 将$z=e^{j\omega}$和$s = \delta+j\Omega$代入上式:
 
 $$
 \begin{aligned}
 s &= \frac{2}{T} \frac{1 - e^{-j\omega}}{1 + e^{-j\omega}} \\
-  &= \frac{2}{T} \frac{1 - \cos \omega - j\sin\omega}{1 + \cos \omega + j\sin \omega} \\
-  &= \frac{2}{T} \frac{1 - (\cos^{2}\omega + \sin^{2}\omega) - j2\sin\omega}{2+2\cos\omega} \\
+  &= \frac{2}{T} \frac{e^{j\omega/2} - e^{-j\omega/2}}{e^{j\omega/2} + e^{-j\omega/2}} \\
+  &= \frac{2}{T} \frac{2j\sin\frac{\omega}{2}}{2\cos\frac{\omega}{2}} \\
   &= 0 + j\frac{2}{T} \tan\frac{\omega}{2} = \delta + j\Omega
 \end{aligned}
 $$
@@ -311,7 +311,7 @@ $$
 这个对应关系在IIR滤波器设计中具有重要意义。由于我们的目标是设计数字滤波器,但采用的是间接设计法,因此需要先将数字滤波器的指标转换为模拟滤波器的指标,再基于转换后的指标设计模拟滤波器。值得注意的是,采样时间T的选择较为灵活,通常取1s即可简化计算。
 
 &nbsp;
-### 双1次z变换的实现（C语言）
+### 双线性变换的实现（C语言）
 我们设计好的巴特沃斯低通滤波器的传递函数如下所示。
 
 $$
@@ -320,7 +320,7 @@ H_a(s) = \frac{1}{a_{0}S^{n} + a_{1}S^{n-1} + \dotsc + a_{n-1}S + a_{n}}
 \end{aligned}
 $$
 
-我们将其进行双1次z变换，我们可以得到如下式子
+我们将其进行双线性变换，可以得到如下式子
 
 $$
 \begin{aligned}
@@ -401,7 +401,7 @@ for(Count = 0;Count<=N;Count++)
 ```c++
 #include <stdio.h>
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
  
  
@@ -465,6 +465,18 @@ int Butter(int N, double Cotoff,
     COMPLEX poles[N];
     COMPLEX Res[N+1],Res_Save[N+1];
  
+    /* Res / Res_Save 参与多项式展开时会以 += 方式累加，
+       必须先清零，否则读取到的是未初始化的栈内容（未定义行为）。
+       b[] 同理：下面只对 b[N] 赋值，其余项需预先置 0。 */
+    for(count = 0;count <= N;count++)
+    {
+        Res[count].Real_part = 0;      Res[count].Imag_Part = 0;
+        Res_Save[count].Real_part = 0; Res_Save[count].Imag_Part = 0;
+        *(b + count) = 0;
+        *(a + count) = 0;
+    }
+    count = 0;
+ 
     if((N%2) == 0) dk = 0.5;
     else dk = 0;
  
@@ -495,6 +507,12 @@ int Butter(int N, double Cotoff,
  
     for(count_1 = 0;count_1 < N-1;count_1++)
     {
+	     for(count = 0;count <= N;count++)
+	     {
+	        Res_Save[count].Real_part = 0;
+	        Res_Save[count].Imag_Part = 0;
+	     }
+ 
 	     for(count = 0;count <= count_1 + 2;count++)
 	     {
 	        if(0 == count)
