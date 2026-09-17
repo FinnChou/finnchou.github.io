@@ -112,7 +112,7 @@ toc: true
 
 comments:
   # Global switch for the post-comment system. Keeping it empty means disabled.
-  provider: # [disqus | utterances | giscus]
+  provider: giscus # [disqus | utterances | giscus]
   # The provider options are as follows:
   disqus:
     shortname: # fill with the Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
@@ -121,15 +121,11 @@ comments:
     repo: # <gh-username>/<repo>
     issue_term: # < url | pathname | title | ...>
   # Giscus options › https://giscus.app
-  # 启用步骤：1) 仓库 Settings → General → 勾选 Discussions
-  #          2) 安装 https://github.com/apps/giscus 到本仓库
-  #          3) 在 https://giscus.app 选好 Discussion 分类，拷贝 category_id 填入下方
-  #          4) 把上面的 `provider:` 改为 `giscus`
   giscus:
     repo: FinnChou/finnchou.github.io # <gh-username>/<repo>
     repo_id: R_kgDOODYiOA
     category: Announcements
-    category_id: # 待 Discussions 开启后从 giscus.app 获取
+    category_id: DIC_kwDOODYiOM4DFzCk
     mapping: # optional, default to 'pathname'
     strict: # optional, default to '0'
     input_position: # optional, default to 'bottom'
