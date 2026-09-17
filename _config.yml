@@ -141,9 +141,19 @@ assets:
     env: # [development | production]
 
 pwa:
+  # 必须保持 true：app.min.js 只有被加载了，才有机会注销访客浏览器里已注册的
+  # Service Worker。改成 false 会导致脚本不再加载，老访客的 SW 永远不会被清掉。
   enabled: true # The option for PWA feature (installable)
   cache:
-    enabled: true # The option for PWA offline cache
+    # 留空以关闭 SW 缓存（注意：不能写 false —— Liquid 会渲染出字符串 "false"，
+    # 在 app.min.js 里是 truthy，照样会注册 SW）。
+    #
+    # 关闭原因：主题的 sw.min.js 用的是 cache-first，且 caches.match 会搜索全部
+    # 缓存；而 sw.min.js 每次构建的字节完全相同，浏览器认定 SW 没有更新，
+    # 于是 install/activate 不再触发，旧缓存永远不会被清理。结果是站点改版后
+    # 老访客一直拿到陈旧资源（本站从 /finn.blog 迁到根路径后就是这个症状：
+    # 强刷正常，普通导航仍是坏的）。博客用不到离线能力，关掉更划算。
+    enabled: # The option for PWA offline cache
     # Paths defined here will be excluded from the PWA cache.
     # Usually its value is the `baseurl` of another website that
     # shares the same domain name as the current website.
