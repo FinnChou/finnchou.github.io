@@ -21,14 +21,14 @@ H_{z}(e^{j\omega}) &= \sum_{n=-20}^{20}h_z(n)e^{-j \omega n} \\
 \end{aligned}
 $$
 
-从频率响应的计算结果可以观察到，该滤波器的频率响应为纯实数，不含虚部分量。这表明其相位谱恒为零，即滤波器的输入输出之间不存在任何时延。这种特性在滤波器理论中被称为零相位特性。
+从频率响应的计算结果可以观察到，该滤波器的频率响应为纯实数，不含虚部分量。这表明其相位谱不存在随频率连续变化的相位项，即滤波器的输入输出之间不存在任何时延。这种特性在滤波器理论中被称为零相位特性。
 
 然而，从系统实现的角度来看，这种零相位特性的滤波器在实际中是不可实现的。通过分析该滤波器的输入输出关系，我们可以更深入地理解其不可实现性。
 
 $$
 \begin{aligned}
-y(n) &= \sum_{n=-20}^{20}h_z(k) x(n-k) \\
-     &= h_z(-20)x(20) + h_z(-19)x(19) + \cdots + h_z(20) x(-20)
+y(n) &= \sum_{k=-20}^{20}h_z(k) x(n-k) \\
+y(0) &= h_z(-20)x(20) + h_z(-19)x(19) + \cdots + h_z(20) x(-20)
 \end{aligned}
 $$
 
@@ -36,8 +36,8 @@ $$
 
 $$
 \begin{aligned}
-y(n) &= \sum_{n=0}^{40}h_z(k) x(n-k) \\
-     &= h_z(0)x(0) + h_z(1)x(-1) + \cdots + h_z(40) x(-40)
+y(n) &= \sum_{k=0}^{40}h_{line}(k) x(n-k) \\
+y(0) &= h_{line}(0)x(0) + h_{line}(1)x(-1) + \cdots + h_{line}(40) x(-40)
 \end{aligned}
 $$
 
@@ -48,7 +48,7 @@ $$
 H_{line}(e^{j\omega}) &= \sum_{n=0}^{2L}h_{line}(n)e^{-j \omega n} \\
                       &= \sum_{n=0}^{2L}h_{zero}(n - L)e^{-j \omega n} \\
                       &= \sum_{n=-L}^{L}h_{zero}(n)e^{-j \omega (n + L)} \\
-                      &= e^{-j \omega n} H_{zero}(e^{j \omega}) \\
+                      &= e^{-j \omega L} H_{zero}(e^{j \omega}) \\
                       &= \left| H_{zero}(e^{j \omega}) \right| e^{j \theta_{line}(\omega)} , \hspace{3mm} \theta _{line}(\omega) = \theta _{zero}(\omega) - \omega L
 \end{aligned}
 $$
@@ -71,7 +71,7 @@ $$
 ```c
 #include <stdio.h>
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 #define pi (3.1415926)
@@ -164,8 +164,8 @@ double Real_Time_FIR_Filter(double *b, int b_Lenth, double *Input_Data)
 
 int main(void) 
 {
-    double w_p = pi / 10;
-    double w_s = pi / 5;
+    double w_p = pi / 3;
+    double w_s = pi / 2;
     double w_c = (w_s + w_p) / 2;
     printf("w_c =  %f \n", w_c);
 
@@ -243,10 +243,10 @@ $$
 <table>
     <tr>
         <td> 
-            ![输入信号](/assets/resource/Design-FIR-Filter/input_signal.jpeg){: width="600" height="600"}
+            <img src="{{ site.baseurl }}/assets/resource/Design-FIR-Filter/input_signal.jpeg" alt="输入信号" width="600">
         </td>
         <td> 
-            ![输出信号](/assets/resource/Design-FIR-Filter/output_signal.jpeg){: width="600" height="600"}
+            <img src="{{ site.baseurl }}/assets/resource/Design-FIR-Filter/output_signal.jpeg" alt="输出信号" width="600">
         </td>
     </tr>
 </table> 
