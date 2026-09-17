@@ -21,7 +21,7 @@ math: true
 - 通带（Passband）：频率范围$[0, \omega_p]$，这是我们希望信号能够无失真通过的频率区间。
 - 通带纹波（Passband Ripple）：范围$[1-\delta_p, 1+\delta_p]$，表示通带内幅频特性的允许波动范围。这个参数直接影响着通带信号的保真度。
 - 阻带（Stopband）：频率范围$[\omega_s, \pi]$，在此区间内的频率分量应被显著衰减。
-- 阻带纹波（Stopband Ripple）：范围$[0, \delta_s]$，定义了阻带内允许的最大衰减量。这个参数决定了滤波器对不需要频率的抑制能力。
+- 阻带纹波（Stopband Ripple）：范围$[0, \delta_s]$，定义了阻带内允许残留的最大幅度，也就是阻带所能保证的最小衰减量。$\delta_s$越小，滤波器对不需要频率的抑制能力越强。
 - 过渡带（Transition Band）：图中的黑色区域，是通带到阻带的过渡区域。其中$\omega_p$是通带截止频率，$\omega_s$是阻带起始频率。过渡带的宽度直接影响着滤波器的阶数和复杂度。
 
 在滤波器设计过程中，上述参数规格需要根据应用要求进行明确定义，并作为设计约束条件。需要指出的是，上述参数定义基于低通滤波器，对于高通或带通滤波器，这些参数的定义方式则需要相应调整。在实际设计中，还需要综合考虑系统要求与硬件资源，以实现滤波器性能的最优化。
@@ -36,7 +36,7 @@ $$
 H(e^{(j\omega)}) = \left \{
 \begin{array}{l}
 1, \hspace{3mm} |\omega| \leq \omega_c \\
-0, \hspace{3mm} otherwide \\
+0, \hspace{3mm} otherwise \\
 \end{array}
 \right.
 
@@ -50,7 +50,7 @@ $$
 $$
 \begin{aligned}
 h_d(n) &= \frac{1}{2\pi} \int_{-\omega_c}^{\omega_c} 1 \cdot e^{j\omega n} d\omega \\
-       &= \frac{1}{2\pi} \cdot \frac{1}{jn} \int_{-\omega_c}^{\omega_c} e^{j\omega n} d\omega \\
+       &= \frac{1}{2\pi} \cdot \frac{1}{jn} \Big[ e^{j\omega n} \Big]_{-\omega_c}^{\omega_c} \\
        &= \frac{1}{n\pi} \cdot \frac{e^{j \omega_c n} - e^{-j \omega_c n}}{2j} \\ 
        &= \frac{sin(\omega_c n)}{\pi n} \\
        &= \frac{\omega_c}{\pi} sinc(\frac{\omega_c}{\pi}n), \hspace{3mm} n \in (-\infty, +\infty)
@@ -75,7 +75,7 @@ $$
 \omega(n) = \left \{
 \begin{array}{l}
 1, \hspace{3mm} |n| \leq \frac{N-1}{2} \\
-0, \hspace{3mm} otherwide \\
+0, \hspace{3mm} otherwise \\
 \end{array}
 \right.
 
@@ -89,7 +89,7 @@ $$
 $$
 \begin{aligned}
 h_d(n) &= h_d(n) \cdot \omega(n) \\
-       &= \frac{\omega_c}{\pi} sinc(\frac{\omega_c}{\pi}n) \cdot \omega(n), \hspace{3mm} n \in \left(-\frac{N-1}{2}, +\frac{N-1}{2} \right)
+       &= \frac{\omega_c}{\pi} sinc(\frac{\omega_c}{\pi}n) \cdot \omega(n), \hspace{3mm} n \in \left[-\frac{N-1}{2}, +\frac{N-1}{2} \right]
 \end{aligned}
 $$
 
@@ -101,7 +101,7 @@ $$
 | ---------- | ---------- | -------- |
 | 矩形窗     | $1.8\pi/N$ | $21[dB]$ |
 | 汉宁窗     | $6.2\pi/N$ | $44[dB]$ |
-| 汉明窗     | $6.6\pi/N$ | $58[dB]$ |
+| 汉明窗     | $6.6\pi/N$ | $53[dB]$ |
 | 布莱克曼窗 | $11\pi/N$  | $74[dB]$ |
 
 
@@ -151,9 +151,9 @@ $$
 $$
 \begin{aligned}
 h_d(n) &= h_d(n) \cdot \omega(n) \\
-       &= \frac{\omega_c}{\pi} sinc(\frac{\omega_c}{\pi}n) \cdot \omega(n), \hspace{3mm} n \in \left(-\frac{N-1}{2}, +\frac{N-1}{2} \right) \\
+       &= \frac{\omega_c}{\pi} sinc(\frac{\omega_c}{\pi}n) \cdot \omega(n), \hspace{3mm} n \in \left[-\frac{N-1}{2}, +\frac{N-1}{2} \right] \\
 
-\omega (n) &= 0.54 + 0.46 \cdot cos \frac{2\pi}{N-1}
+\omega (n) &= 0.54 + 0.46 \cdot cos \frac{2\pi n}{N-1}
 
 \end{aligned}
 $$

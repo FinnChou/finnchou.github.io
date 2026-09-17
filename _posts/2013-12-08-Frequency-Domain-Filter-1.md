@@ -15,7 +15,7 @@ math: true
 
 $$
 \begin{aligned}
-f(t) \star h(t) = \int_{-\infty}^{+\infty} f(\tau) h(\tau - t) d\tau
+f(t) \star h(t) = \int_{-\infty}^{+\infty} f(\tau) h(t - \tau) d\tau
 \end{aligned}
 $$
 
@@ -24,8 +24,8 @@ $$
 $$
 \begin{aligned}
 \Im[f(t) \star h(t)] &= \Im \Big[ {\int_{-\infty}^{+\infty} f(\tau) h(\tau - t) d\tau} \Big] \\
-                 &= \int_{-\infty}^{+\infty} \Big[ {\int_{-\infty}^{+\infty} f(\tau) h(\tau - t) d\tau} \Big] e^{-j 2\pi ut} \\
-                 &= \int_{-\infty}^{+\infty} \Big[ H(\mu ) e^{-j 2\pi \mu t}  \Big] f(\tau) d\tau = H(\mu) F(\mu)
+                 &= \int_{-\infty}^{+\infty} \Big[ {\int_{-\infty}^{+\infty} f(\tau) h(t - \tau) d\tau} \Big] e^{-j 2\pi \mu t} dt \\
+                 &= \int_{-\infty}^{+\infty} \Big[ H(\mu ) e^{-j 2\pi \mu \tau}  \Big] f(\tau) d\tau = H(\mu) F(\mu)
 \end{aligned}
 $$
 
@@ -56,14 +56,14 @@ $$
 越靠近0点的成分频率越低，越靠近$-\pi$与$\pi$的成分频率越高。对于图像而言，在Matlab中使用fft2()函数计算傅里叶变换：
 
 ```matlab
-g = fft(f)
+g = fft2(f)
 ```
 
-然而，上面这段代码计算的实际是$[0,\pi]$范围内的傅里叶变换。为便于理解，下图展示了该代码计算的图像傅里叶变换范围（右）以及与之等效的一维傅里叶变换范围（左）：
+这段代码计算出的是$[0,2\pi)$范围内、共$M \times N$个点的傅里叶变换，且直流分量位于左上角。为便于理解，下图展示了该代码计算的图像傅里叶变换范围（右）以及与之等效的一维傅里叶变换范围（左）：
 
 ![fft变换示例1](/assets/resource/Frequency-Domain-Filter-1/fft_transform_example1.jpeg){: width="600" height="600"}
 
-而我们希望获取$[0,2\pi]$范围的傅里叶变换，可以通过以下代码实现：
+在频域做滤波时，DFT隐含的是圆周卷积，图像一侧的内容会绕回到另一侧，造成所谓的缠绕误差(wraparound error)。为避免这一问题，需要把图像补零延拓到$P \ge 2M-1$、$Q \ge 2N-1$，通常直接取$P=2M$、$Q=2N$。补零并不改变频率的取值范围，只是让频率采样更密。实现代码如下：
 
 ```matlab
 P = 2*M;
@@ -91,7 +91,7 @@ $$
 
 $$
 \begin{aligned}
-\Im \Big[ f(x,y) e^{j2\pi (\frac{u_0}{M}x + \frac{v_0}{N}y)} \Big] = \Im \Big[ f(x,y) e^{j2\pi (x+y)} \Big] = \Im \Big[ f(x,y) (-1)^{x+y} \Big] 
+\Im \Big[ f(x,y) e^{j2\pi (\frac{u_0}{M}x + \frac{v_0}{N}y)} \Big] = \Im \Big[ f(x,y) e^{j\pi (x+y)} \Big] = \Im \Big[ f(x,y) (-1)^{x+y} \Big] 
 \end{aligned}
 $$
 

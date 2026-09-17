@@ -16,7 +16,7 @@ y(n) = -\sum_{k=1}^{N}a_ky(n-k) + \sum_{k=0}^{N}b_kx(n-k)
 \end{aligned}
 $$
 
-仔细分析这个差分方程的结构，我们可以发现系统输出$y(n)$不仅依赖于输入序列$x(n-k)$，还依赖于系统的历史输出值$y(n-k)$。这种包含反馈路径的结构中，系数$a_k$起着决定性的作用：当所有$a_k = 0$时，系统不存在反馈路径，其单位冲击响应具有有限长度，此时系统即为FIR滤波器；而当存在非零的$a_k$时，由于反馈路径的存在，系统的单位冲击响应将具有无限长度，这正是IIR滤波器的本质特征。
+仔细分析这个差分方程的结构，我们可以发现系统输出$y(n)$不仅依赖于输入序列$x(n-k)$，还依赖于系统的历史输出值$y(n-k)$。这种包含反馈路径的结构中，系数$a_k$起着决定性的作用：当所有$a_k = 0$时，系统不存在反馈路径，其单位冲击响应具有有限长度，此时系统即为FIR滤波器；而当存在非零的$a_k$时，由于反馈路径的存在，系统的单位冲击响应一般具有无限长度，这正是IIR滤波器的本质特征。
 
 &nbsp;
 ## 直接I型IIR滤波器
@@ -52,7 +52,7 @@ $$
 ```c
 #include <stdio.h>
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
 
 double IIR_Filter(double *a, int Lenth_a,
@@ -73,7 +73,7 @@ double IIR_Filter(double *a, int Lenth_a,
         Memory_Lenth = Lenth_b;
     }
     
-    Output_Data += (*a) * Input_Data;  //a(0)*x(n)             
+    Output_Data += (*a) * Input_Data;  //w(n) = x(n) - sum(a(k)*w(n-k))，此处 a(0) 已归一化为 1             
     
     for (Count = 1; Count < Lenth_a; Count++) 
     {

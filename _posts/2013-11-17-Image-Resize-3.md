@@ -194,8 +194,8 @@ D_y = 2;
 
 [M,N] = size(f);
 g_xy = zeros((M*U_x)+6,(N*U_y)+6);
-H_x = [1 2 2 1]/3;
-H_y = [1 2 2 1]/2;
+H_x = [1 2 2 1]/3;    %行(垂直)方向 U_x=2 的零次保持+平均
+H_y = [1 2 3 2 1]/3;  %列(水平)方向 U_y=3 的线性插值
 
 for x = 0:1:M-1 
    for y = 0:1:N-1
@@ -209,10 +209,10 @@ g_xy(:,1) = g_xy(:,U_y+1);
 g_xy(:,(M*U_y)+U_y+1) = g_xy(:,(M*U_y)+1); 
 
 for x = 1:1:(U_x*M)+6 
-    g_xy(x,:) = filter(H_x,1,g_xy(x,:));
+    g_xy(x,:) = filter(H_y,1,g_xy(x,:));  %沿列滤波，即水平方向
 end
 for y = 1:1:(U_y*N)+6 
-    g_xy(:,y) = filter(H_y,1,g_xy(:,y));
+    g_xy(:,y) = filter(H_x,1,g_xy(:,y));  %沿行滤波，即垂直方向
 end
 
 g_xy_2 = zeros((M*U_x),(N*U_y));

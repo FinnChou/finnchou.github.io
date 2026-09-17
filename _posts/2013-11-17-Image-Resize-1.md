@@ -28,11 +28,11 @@ $$
 \end{aligned}
 $$
 
-其中，$ \sum_{n=-\infty}^{\infty} \delta(t - n \Delta T)$ 表示以 $\Delta T$ 为时间间隔的冲击串信号。对采样后的离散信号 $\stackrel{\sim}{f}(t)$ 进行离散傅立叶变换，可得：
+其中，$ \sum_{n=-\infty}^{\infty} \delta(t - n \Delta T)$ 表示以 $\Delta T$ 为时间间隔的冲击串信号。对采样后的信号 $\stackrel{\sim}{f}(t)$ 进行连续时间傅立叶变换，可得：
 
 $$
 \begin{aligned}
-\stackrel{\sim}{F_{\Delta T}}(u) &= F(\mu)S(\mu - \tau) \\ 
+\stackrel{\sim}{F_{\Delta T}}(u) &= F(\mu) \star S(\mu) \\ 
 &= \frac{1}{\Delta T} \sum_{n=-\infty}^{\infty} F(\mu - \frac{n}{\Delta T})
 \end{aligned}
 $$
@@ -47,7 +47,7 @@ $$
 
 ![Digital Signal Sample 1](/assets/resource/Image-Resize-1/digital_signal_sample_1.jpeg){: width="450" height="450"}
 
-然后，将采样间隔减小一半（即采样频率提高一倍），即 $\Delta T = \frac{1}{\mu_{m}}$，得到信号②：
+然后，将采样间隔减小一半（即采样频率提高一倍），即 $\Delta T = \frac{1}{4\mu_{m}}$，得到信号②：
 
 ![Digital Signal Sample 2](/assets/resource/Image-Resize-1/digital_signal_sample_2.jpeg){: width="450" height="450"}
 
@@ -102,7 +102,7 @@ $$
 \begin{equation}
 h(t) = \left \{
 \begin{array}{l}
-t, 0 \le |t| < 1 \\
+1 - |t|, 0 \le |t| < 1 \\
 0, 1 \le |t| \\ 
 \end{array}
 \right.
@@ -119,14 +119,14 @@ $$
 h(t) = \left \{
 \begin{array}{l}
 (a + 2)|t|^3 - (a+3)|t|^2 + 1, & 0 \le |t| < 1 \\
-a|t|^3 - 5a|t|^2 + 8|t| - 4a, & 1 \le |t| < 2 \\
+a|t|^3 - 5a|t|^2 + 8a|t| - 4a, & 1 \le |t| < 2 \\
 0, & 2 \le |t| \\ 
 \end{array}
 \right.
 \end{equation}
 $$
 
-与线性插值法类似，当扩大倍数为$U$时，$t \in [-1, 1]$，步进值为$1/U$，得到所需的滤波器单位冲击响应。参数a用于调整插值性能，如下图所示：
+与线性插值法类似，当扩大倍数为$U$时，$t \in [-2, 2]$，步进值为$1/U$，得到所需的滤波器单位冲击响应。参数a用于调整插值性能，如下图所示：
 
 ![Cubic Convolution Interpolation](/assets/resource/Image-Resize-1/cubic_convolution_interpolation.jpeg){: width="450" height="450"}
 
@@ -138,7 +138,7 @@ $$
 h(t) = \left \{
 \begin{array}{l}
 \frac{1}{2}|t|^3 - |t|^2 + \frac{2}{3}, & 0 \le |t| < 1 \\
--\frac{1}{6}|t|^3 + |t|^2 - 2|t| + \frac{3}{4}, & 1 \le |t| < 2 \\
+-\frac{1}{6}|t|^3 + |t|^2 - 2|t| + \frac{4}{3}, & 1 \le |t| < 2 \\
 0, & 2 \le |t| \\ 
 \end{array}
 \right.
@@ -154,7 +154,7 @@ $$
 1. 零次保持法（最邻近插值法）的效果最差，其滤波器与理想滤波器差异最大
 2. 线性插值法比零次保持法更接近理想滤波器，因此效果更好
 3. 三次卷积插值法更接近理想滤波器，性能优于线性插值法。但其单位冲击响应存在负值，可能导致"振铃"现象，需要谨慎调整参数a
-4. B-spline插值法在低频特性上最接近理想滤波器，但在高频特性上与理想滤波器差异最大
+4. B-spline插值法在高频特性上最接近理想滤波器，阻带的抑制效果最好，但其低频特性与理想滤波器差异最大，通带内的衰减会使结果偏模糊
 
 ### 实验验证与结果分析
 
@@ -328,7 +328,7 @@ U = 2;   %拡大率　
 [M,N] = size(f);
 g_cubic = zeros((M*U)+16,(N*U)+16);
 
-a = -0.0001;
+a = -0.5;
 t = -1+(1/U):(1/U):1-(1/U);
 H_cubic = (a+2)*(abs(t).^(3))-(a+3)*(abs(t).^(2)) + 1;  
 t = -2+(1/U):(1/U):-1;
@@ -392,7 +392,7 @@ w = 0:0.01:pi;
 Xejw_3 = freqz(H_cubic,1,w);
 plot(w,abs(Xejw_3));
 axis([0,pi,0,5]);grid;
-xlabel('\omega [rad] (a = -0.41)');
+xlabel('\omega [rad] (a = -0.5)');
 ylabel('|H(e^{j\omega_1}|');
 f = imread('./cheer/maru_256(cheer).tif');
 f_Goal = imread('./cheer/maru_512(cheer).tif');

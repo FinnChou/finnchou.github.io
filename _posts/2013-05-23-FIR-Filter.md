@@ -9,7 +9,7 @@ math: true
 
 在数字信号处理领域中，滤波器可以根据其单位冲击响应的特性分为两大类。当滤波器的单位冲击响应是有限长度的数列时，我们称之为有限冲击响应(FIR)滤波器。相反地，如果单位冲击响应是无限长度的数列，则称之为无限冲击响应(IIR)滤波器。
 
-让我们从时域的角度，通过线性差分方程来深入理解FIR和IIR数字滤波器的本质。根据卷积定理，系统的输出可以表示为单位脉冲响应与输入信号的卷积，即：
+让我们从时域的角度，通过线性差分方程来深入理解FIR和IIR数字滤波器的本质。根据线性时不变系统的卷积性质，系统的输出可以表示为单位脉冲响应与输入信号的卷积，即：
 
 $$
 \begin{aligned}
@@ -17,7 +17,7 @@ y(n) = \sum_{k=0}^{\infty}h(k)x(n-k)
 \end{aligned}
 $$
 
-将此表达式改写为递归形式：
+作为一个具体的例子，我们取单位脉冲响应为 $h(k) = a^k \ (k \ge 0)$，此时上式可以改写为递归形式：
 
 $$
 \begin{aligned}
@@ -40,7 +40,7 @@ $$
 
 ![FIR滤波器系统框图1](/assets/resource/FIR-Filter/FIR-Filter-1.jpeg){: width="300" height="300"}
 
-在这种情况下，如果输入单位脉冲信号，由于反馈的存在，系统的响应将会无限持续。然而，当所有的$a_k = 0$时，反馈路径消失，系统的结构简化为：
+在这种情况下，如果输入单位脉冲信号，由于反馈的存在，系统的响应一般会无限持续。然而，当所有的$a_k = 0$时，反馈路径消失，系统的结构简化为：
 
 ![FIR滤波器系统框图2](/assets/resource/FIR-Filter/FIR-Filter-2.jpeg){: width="300" height="300"}
 
@@ -50,7 +50,7 @@ $$
 ```c
 #include <stdio.h>
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
  
 double Real_Time_FIR_Filter(double *b,
