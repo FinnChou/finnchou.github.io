@@ -12,18 +12,18 @@ math: true
 
 另外在图像数据处理的时候，一般都需要将图像的像素值缩放到一定的范围内，常用的缩放范围是$[0, 1]$ 或者 $[-1, 1]$。 这个过程通常被称为图像归一化(Image Normalization)。
 
-当前，常用的数字图像大多数依旧是8bits的数据，其像素范围为$[0, 255]$。数字图像数据目前比较常用的压缩格式JPG，基本就是8bits图像。当然，也存在一些16bits的图像数据，比如TIFF格式，PNG格式等，都支持存储16bits的图像数据。还有一些Camera RAW格式图像，可能存储了12bits，14bits或16bits的图像数据。而这些Raww数据并非通用的编码格式，实际处理的时候需要特殊的渲染引擎。
+当前，常用的数字图像大多数依旧是8bits的数据，其像素范围为$[0, 255]$。数字图像数据目前比较常用的压缩格式JPG，基本就是8bits图像。当然，也存在一些16bits的图像数据，比如TIFF格式，PNG格式等，都支持存储16bits的图像数据。还有一些Camera RAW格式图像，可能存储了12bits，14bits或16bits的图像数据。而这些Raw数据并非通用的编码格式，实际处理的时候需要特殊的渲染引擎。
 
 如果直接使用8bits或者16bits的图像数据进行计算，那么计算结果会超出范围的时候，就需要频繁进行处理。因此，我对数学公式进行了调整，使其输入和输出均归一化到$[0, 1]$的范围内。
 
 &nbsp;
-### 图像负片 (Image Negativates)  
+### 图像负片 (Image Negatives)  
 <hr style="border: 2px solid #ccc; margin: 20px 0;">
 有地方翻译为图像反转，这个翻译不是很恰当。这里应该理解为负片变换，负片变换如下所示。
   
 $$
 \begin{aligned}
-{res_{(x,y)} = 1.0 - r_{(x,y)}, \hspace{3mm} src_{(x,y)} \in [0,1]}
+{res_{(x,y)} = 1.0 - src_{(x,y)}, \hspace{3mm} src_{(x,y)} \in [0,1]}
 \end{aligned}
 $$
 
@@ -146,7 +146,7 @@ xlabel('b).Gamma Transformations \gamma = 0.4');
 
 $$
 \begin{aligned}
-{res_{(x,y)} = \frac{1}{1 + (m / r_{(x,y)})^{E}} , \hspace{3mm} src_{(x,y)} \in [0,1]}
+{res_{(x,y)} = \frac{1}{1 + (m / src_{(x,y)})^{E}} , \hspace{3mm} src_{(x,y)} \in [0,1]}
 \end{aligned}
 $$
 
@@ -161,7 +161,7 @@ $$
 只是，其输入满足$src_{(x,y)} \in [0, 1]$的时候，其输出范围变为了 $res_{(x,y)} \in [\frac{1}{1 + (\frac{m}{eps})^{E}}, \frac{1}{1 + (\frac{m}{1 + eps})^{E}}]$，近似可以视为$res_{(x,y)} \in [0, 1]$。 为了精确起见，使用mat2gray函数将其扩展到精确的。调用格式如下。
 
 ```matlab
-res = mat2gray(src, [1/(1+(m/eps)^E) 1/(1+(m/1+eps)^E)]);
+res = mat2gray(src, [1/(1+(m/eps)^E) 1/(1+(m/(1+eps))^E)]);
 ```
 
 输入输出问题已经解决，但仍然存在一个待处理的问题，即参数的确定。这里涉及两个参数：$m$（对于巴特沃斯高通滤波器而言，这是截止频率）和$E$（同样是针对巴特沃斯高通滤波器，这是滤波器的次数）。参数$m$可以调节变换曲线的重心，而$E$则影响曲线的斜率，如下图所示。
@@ -172,19 +172,19 @@ $m$值的可取图像灰度分布的中央值，如下式所示，
 
 $$
 \begin{aligned}
-m = \frac{1}{2}(Min(res_{(x,y)}) + Max(res_{(x,y)}))
+m = \frac{1}{2}(Min(src_{(x,y)}) + Max(src_{(x,y)}))
 \end{aligned}
 $$
 
-决定$m$之后，接下来只剩下$E$的计算。提升对比度的目的在于扩展图像的动态范围，我们希望将原本灰度范围为$[Min(res_{(x,y)}), Max(res_{(x,y)})]$的图像转换到$[0, 1]$之间。为此，我们可以直接使用最大值和最小值带入公式，解出$E$。
+决定$m$之后，接下来只剩下$E$的计算。提升对比度的目的在于扩展图像的动态范围，我们希望将原本灰度范围为$[Min(src_{(x,y)}), Max(src_{(x,y)})]$的图像转换到$[0, 1]$之间。为此，我们可以直接使用最大值和最小值带入公式，解出$E$。
 
 然而，如之前所述，我们所使用的公式的输出范围无法达到$[0, 1]$。直接取$[0, 1]$的范围会导致$E$的值非常大，从而使得变换曲线的斜率过于陡峭，最终的灰度扩展效果并不理想。因此，我们采取一种折中的方法，将输出范围设定为$[0.05, 0.95]$。接下来，$E$的取值如下所示。
 
 $$
 \begin{aligned}
-E_{1} &= log_{\frac{m}{Min(res_{(x,y)})}}(\frac{1.0}{0.05} - 1.0) \\
-E_{2} &= log_{\frac{m}{Max(res_{(x,y)})}}(\frac{1.0}{0.95} - 1.0) \\
-E &= ceil(min(E_{1}, E_{2})
+E_{1} &= log_{\frac{m}{Min(src_{(x,y)})}}\left(\frac{1.0}{0.05} - 1.0\right) \\
+E_{2} &= log_{\frac{m}{Max(src_{(x,y)})}}\left(\frac{1.0}{0.95} - 1.0\right) \\
+E &= ceil\big(min(E_{1}, E_{2})\big)
 \end{aligned}
 $$
 
@@ -219,10 +219,10 @@ Out_put_max = 0.95;
 
 E_1 = log(1/Out_put_min - 1)/log(m/(Min_f+eps));
 E_2 = log(1/Out_put_max - 1)/log(m/(Max_f+eps));
-E = ceil(min(E_1,E_2)-1);
+E = ceil(min(E_1,E_2));
 
 g = 1 ./(1 + (m ./ (f+ eps)).^E);
-g = mat2gray(g,[1/(1+(m/eps)^E) 1/(1+(m/1+eps)^E)]);
+g = mat2gray(g,[1/(1+(m/eps)^E) 1/(1+(m/(1+eps))^E)]);
 
 figure();
 subplot(2,2,1);
@@ -249,7 +249,7 @@ ylabel('Number of pixels');
 
 in_put = 0:1/255:1;
 Out_put1 = 1 ./(1 + (m ./ (double(in_put)+ eps)).^E);
-Out_put1 = mat2gray(Out_put1,[1/(1+(m/eps)^E) 1/(1+(m/1+eps)^E)]);
+Out_put1 = mat2gray(Out_put1,[1/(1+(m/eps)^E) 1/(1+(m/(1+eps))^E)]);
 
 figure();
 plot(in_put,Out_put1);
@@ -272,10 +272,10 @@ ylabel('Onput intensity level');
 
 
 &nbsp;
-#### 位图切割 (Bit-plance Slicing)
+#### 位图切割 (Bit-plane Slicing)
 <hr style="border: 2px solid #ccc; margin: 20px 0;">
 位图切割，就是按照图像的位，将图像分层处理。若图像的某个像素，其bit7为1，则在位面7这个像素值为1，反之则为0。
 
 ![位图切割示例](/assets/resource/basic-Intensity-Transformations-Functions/Bit-plance-Slicing.jpeg){: width="600" height="600"}
 
-由位图切割的结果，图像的主要信息包含在了高4位。仅仅靠高4位，还原的图像更原图基本差不多。由此可见，位图切割主要用于图像压缩。
+由位图切割的结果，图像的主要信息包含在了高4位。仅仅靠高4位，还原的图像跟原图基本差不多。由此可见，位图切割主要用于图像压缩。
