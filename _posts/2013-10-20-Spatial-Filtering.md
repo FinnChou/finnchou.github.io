@@ -21,7 +21,7 @@ $$
 
 在卷积运算中，滤波器 $w(s,t)$ 与原始图像区域 $f(x-s, y-t)$ 的运算并非简单的乘加，而是涉及坐标旋转。值得注意的是，现代主流神经网络框架中的卷积层实际上并不进行坐标反转操作，而是直接进行对应位置的相乘相加。从严格意义上讲，这种操作应该称为互相关(cross-correlation)而非卷积。不过，在实际训练过程中，坐标旋转与否并不会影响网络的收敛结果。
 
-上式所示的滤波器是非因果的。根据数字信号处理理论，非因果系统具有零相位特性，但由于需要未来的输入，在实际中是不可实现的。然而在图像处理中，我们通常逐帧处理图像，因此非因果性不会造成问题。更重要的是，零相位特性可以保证图像不会发生形变，这一点在图像处理中至关重要。
+上式所示的滤波器是非因果的。根据数字信号处理理论，零相位特性要求单位冲击响应关于原点对称，这样的系统必然是非因果的，由于需要未来的输入，在实际中是不可实现的。然而在图像处理中，我们通常逐帧处理图像，因此非因果性不会造成问题。更重要的是，零相位特性可以保证图像不会发生形变，这一点在图像处理中至关重要。
 
 另一个需要考虑的问题是边界处理。当滤波器中心靠近图像边缘时，滤波器的一部分会超出图像范围。常见的处理方法包括：
 1. 零填充
@@ -58,7 +58,7 @@ $$
 close all;
 clear all;
 
-%% -------------Smoothing Lines Filters-----------------
+%% -------------Smoothing Linear Filters-----------------
 f = imread('test_pattern_blurring_orig.tif');
 f = mat2gray(f,[0 255]);
 
@@ -174,7 +174,7 @@ axis square;
 xlabel('j).The histogram of g)');
 ylabel('Number of pixels');
 
-%% -------------Nonlines Filters-----------------
+%% -------------Nonlinear Filters-----------------
 g_med_wg = medfilt2(g_gaussian,'symmetric',[3 3]);
 g_med_sp = medfilt2(g_salt_pepper,'symmetric',[3 3]);
 
@@ -206,7 +206,7 @@ xlabel('l).The histogram of i)');
 ylabel('Number of pixels');
 
 
-%% -------------lines Filters-----------------
+%% -------------Linear Filters-----------------
 w_1 = [1 2 1;
        2 4 2;
        1 2 1]/16;  %%%%%
@@ -275,7 +275,7 @@ $$
 ![四方向的拉普拉斯滤波器频响](/assets/resource/Spatial-Filtering/4-direction-laplacian-filter-frequency-response.jpeg){: width="600" height="600"}
 ![八方向的拉普拉斯滤波器频响](/assets/resource/Spatial-Filtering/8-direction-laplacian-filter-frequency-response.jpeg){: width="600" height="600"}
 
-八方向拉普拉斯滤波器对高频成分的增强效果更强。其低频部分最小值为0，意味着滤波后仅保留图像的高频成分（即边缘信息）。因此，用于图像锐化时，通常将滤波结果叠加到原图像上，相当于将滤波器的幅频特性向上平移1个单位，保持低频成分不变的同时增强高频成分。
+八方向拉普拉斯滤波器对高频成分的增强效果更强。其低频部分最小值为0，意味着滤波后仅保留图像的高频成分（即边缘信息）。因此，用于图像锐化时，需要把滤波结果与原图像合成。注意这里拉普拉斯核的中心系数为负（$-4$），所以应当用原图减去滤波结果，即$g = f - \nabla^2 f$，其等效的幅频特性为$1 - H(\omega)$，在保持低频成分不变的同时增强高频成分。
 
 ![拉普拉斯滤波器结果](/assets/resource/Spatial-Filtering/laplacian-filter-results.jpeg){: width="600" height="600"}
 
@@ -291,9 +291,9 @@ f = mat2gray(f,[0 255]);
 w_L = [0  1 0
        1 -4 1
        0  1 0];
-g_L_whitout  = imfilter(f,w_L,'conv','symmetric','same');
-g_L = mat2gray(g_L_whitout);
-g = f - g_L_whitout;
+g_L_without  = imfilter(f,w_L,'conv','symmetric','same');
+g_L = mat2gray(g_L_without);
+g = f - g_L_without;
 g = mat2gray(g ,[0 1]);
 
 figure();
@@ -302,7 +302,7 @@ imshow(f,[0 1]);
 xlabel('a).Original Image');
 
 subplot(1,2,2);
-imshow(g_L_whitout,[0 1]);
+imshow(g_L_without,[0 1]);
 xlabel('b).The Laplacian');
 
 figure();
@@ -376,7 +376,7 @@ $$
 close all;
 clear all;
 
-%% -------------Unsharp Masking and Highboots Filtering-----------------
+%% -------------Unsharp Masking and Highboost Filtering-----------------
 close all;
 clear all;
 
@@ -407,7 +407,7 @@ xlabel('a).Unsharp Mask');
 
 subplot(2,2,4);
 imshow(g_hb,[0 1]);
-xlabel('b).Result of Highboots Filter');
+xlabel('b).Result of Highboost Filter');
 
 
 %%
@@ -418,7 +418,7 @@ figure();
 plot(1:N,f(77,1:N),'r');
 axis([1,N,0,1]),grid;
 axis square;
-xlabel('a).Original Image(77th column)');
+xlabel('a).Original Image(77th row)');
 ylabel('intensity level');
 
 figure();
@@ -427,7 +427,7 @@ plot(1:N,f(77,1:N),'r',1:N,g_Gaussian(77,1:N),'--b');
 legend('Original','Result');
 axis([1,N,0,1]),grid;
 axis square;
-xlabel('b).Result of gaussian filter(77th column)');
+xlabel('b).Result of gaussian filter(77th row)');
 ylabel('intensity level');
 
 figure();
@@ -435,7 +435,7 @@ figure();
 plot(1:N,g_mask(77,1:N));
 axis([1,N,-.1,.1]),grid;
 axis square;
-xlabel('c).Result of gaussian filter (77th column)');
+xlabel('c).Result of gaussian filter (77th row)');
 ylabel('intensity level');
 
 figure();
@@ -443,7 +443,7 @@ figure();
 plot(1:N,g_hb(77,1:N));
 axis([1,N,0,1.1]),grid;
 axis square;
-xlabel('d).Result of Highboots Filtering(77th column)');
+xlabel('d).Result of Highboost Filtering(77th row)');
 ylabel('intensity level');
 ```
 
@@ -451,7 +451,7 @@ ylabel('intensity level');
 
 索贝尔滤波器是另一种常用的边缘检测滤波器。其原理与锐化滤波器类似，通过一阶微分保留边缘信息，同时滤除平滑区域。
 
-从纵向来看，该滤波器是一个中心二阶微分运算，具有高通滤波特性，因此能够提取图像边缘。从横向来看，它又是一个加权平均滤波器，具有一定的平滑作用。索贝尔滤波器由以下两个滤波器组合而成：
+从纵向来看，该滤波器是一个中心一阶差分运算，具有高通滤波特性，因此能够提取图像边缘。从横向来看，它又是一个加权平均滤波器，具有一定的平滑作用。索贝尔滤波器由以下两个滤波器组合而成：
 
 ![索贝尔滤波核](/assets/resource/Spatial-Filtering/sobel-filter-kernel.jpeg){: width="600" height="600"}
 
