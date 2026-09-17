@@ -5,6 +5,9 @@ date: 2014-07-11 16:45:12 +0800
 categories: 数字图像处理
 tags: [图像处理, 噪声模型]
 math: true
+image:
+  path: /assets/resource/og/Noise-Models.png
+  alt: "Image Denoise : 噪声模型"
 ---
 
 ### 图像退化模型

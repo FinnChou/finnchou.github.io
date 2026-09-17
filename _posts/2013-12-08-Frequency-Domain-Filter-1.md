@@ -5,6 +5,9 @@ date: 2013-12-08 12:42:43 +0800
 categories: 数字图像处理
 tags: [图像处理, 低通滤波, 频域滤波]
 math: true
+image:
+  path: /assets/resource/og/Frequency-Domain-Filter-1.png
+  alt: "Frequency Domain Filter : 低通滤波"
 ---
 
 本文从频率域角度对之前文章中介绍的空间域滤波器进行分析。主要利用傅里叶变换将空间域图像转换到频域，在频域中进行数字图像处理。这部分内容极其重要，因为频域处理能够解决空间域无法完成的图像增强任务。文章首先从数学角度分析图像在频域中的特性，然后重点介绍滤波器在频域中的性质。

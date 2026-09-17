@@ -1,0 +1,42 @@
+---
+---
+
+@use 'main
+{%- if jekyll.environment == 'production' -%}
+  .bundle
+{%- endif -%}
+';
+
+/* append your custom style below */
+
+/*
+ * 文章 front matter 里的 `image` 有两个用途：一是喂给 og:image（社交分享卡片），
+ * 二是被 post.html 渲染成文章顶部的封面图。我们只需要前者——那张图就是一张
+ * 写着文章标题的卡片，显示在标题正下方会和标题重复，所以在文章页把它隐藏掉。
+ * 首页列表的 .preview-img 在 .card 容器内，不受影响。
+ */
+/*
+ * 注意选择器不要写成 `img.preview-img`：主题的 refactor 后处理会把图片包进
+ * lightbox 链接，最终 HTML 里 .preview-img 落在外层 <a> 上而不是 <img> 上。
+ */
+article > header {
+  /* 连同 figcaption 和外层 div 的间距一起去掉 */
+  div:has(> .preview-img) {
+    display: none;
+  }
+
+  /* 不支持 :has() 的浏览器兜底 */
+  .preview-img,
+  .preview-img + figcaption {
+    display: none;
+  }
+}
+
+/*
+ * 首页列表同理：卡片左边是标题，右边缩略图又是同一张标题卡，重复。
+ * 隐藏整个图片列，让列表回到纯文字卡片。
+ * 想改回“列表带缩略图”，把下面这条规则删掉即可。
+ */
+#post-list .post-preview > div:has(> .preview-img) {
+  display: none;
+}

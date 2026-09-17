@@ -6,6 +6,9 @@ categories: 数字信号处理
 tags: [FIR滤波器, 相位解卷绕]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/FIR-Filter-Phase-Unwrapping.png
+  alt: "[番外]相位特性解卷绕"
 ---
 
 在分析FIR滤波器特性时,我们需要对其系数(单位冲击响应)进行离散时间傅里叶变换,表达式如下:

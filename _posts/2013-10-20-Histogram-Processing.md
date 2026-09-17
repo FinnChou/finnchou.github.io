@@ -6,6 +6,9 @@ categories: 数字图像处理
 tags: [图像处理, 直方图处理]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/Histogram-Processing.png
+  alt: "Histogram Processing : 直方图处理"
 ---
 
 &nbsp;

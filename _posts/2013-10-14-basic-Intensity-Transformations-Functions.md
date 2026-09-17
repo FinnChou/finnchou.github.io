@@ -6,6 +6,9 @@ categories: 数字图像处理
 tags: [图像处理, 灰度变换]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/basic-Intensity-Transformations-Functions.png
+  alt: "Intensity Transformations : 灰度变换"
 ---
 
 本文主要参考了《Digital Image Processing》一书的第三章，主要介绍了一些列的灰度变换（Intensity Transformations）的相关内容。灰度变换的算法，一般是对单通道的灰度图像进行处理。而对于彩色图像，无论是何种格式（RGB，RGBA，CMYK），都可以单独的将某一个通道单独取出来，也可以进行灰度变换算法的处理。所以，以灰度图像的逐像素处理的算法为基础进行描述，也可以比较方便的运用于彩色图像。

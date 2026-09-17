@@ -6,6 +6,9 @@ categories: 数字信号处理
 tags: [IIR滤波器, 巴特沃斯滤波器]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/IIR-Filter-Design-1.png
+  alt: "5.IIR滤波器的间接设计"
 ---
 
 在数字滤波器设计中,间接设计法是一种重要的方法。其基本思路是先根据给定参数设计模拟滤波器,然后通过变数变换得到数字滤波器。作为数字滤波器设计基础的模拟滤波器称为原型滤波器。本文将介绍最基础的原型滤波器——巴特沃斯低通滤波器。

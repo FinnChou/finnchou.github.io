@@ -6,6 +6,9 @@ categories: 数字信号处理
 tags: [IIR滤波器, 直接设计法]
 math: true
 # categories: jekyll update
+image:
+  path: /assets/resource/og/IIR-Filter-Design-2.png
+  alt: "6.IIR滤波器的直接设计"
 ---
 在数字滤波器设计中，除了通过模拟滤波器间接设计的方法外，还可以直接进行数字滤波器的设计，这种方法称为直接设计法。在前文中，我们介绍了IIR滤波器的间接设计方法，即先设计巴特沃斯模拟滤波器，再通过双线性变换得到数字滤波器。
 

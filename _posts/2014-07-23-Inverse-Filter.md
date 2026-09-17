@@ -5,6 +5,9 @@ date: 2014-07-23 20:15:28 +0800
 categories: 数字图像处理
 tags: [图像处理, 图像复原, 逆滤波]
 math: true
+image:
+  path: /assets/resource/og/Inverse-Filter.png
+  alt: "Image Restoration : 逆滤波"
 ---
 
 ### 逆滤波的问题点
