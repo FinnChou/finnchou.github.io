@@ -143,7 +143,7 @@ H(z) = \frac{K(1+z^{-1})^{N}}{\prod_{|p_k| < 1} (1-p_k z^{-1})}
 \end{aligned}
 $$
 
-其中增益系数$K$由直流增益$H(z)\big|_{z=1} = 1$定出，可通过以下公式计算：
+其中增益系数$K$由直流增益$H(z)\big\vert_{z=1} = 1$定出，可通过以下公式计算：
 
 $$
 \begin{aligned}
@@ -617,10 +617,10 @@ $$
 <table>
     <tr>
         <td> 
-            <img src="{{ site.baseurl }}/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-3.jpeg" alt="IIR滤波器结果3" width="600">
+            <img src="/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-3.jpeg" alt="IIR滤波器结果3" width="600">
         </td>
         <td> 
-            <img src="{{ site.baseurl }}/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-4.jpeg" alt="IIR滤波器结果4" width="600">
+            <img src="/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-4.jpeg" alt="IIR滤波器结果4" width="600">
         </td>
     </tr>
 </table>

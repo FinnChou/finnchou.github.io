@@ -51,7 +51,7 @@ $$
 
 ![Average Filter Results](/assets/resource/Spatial-Filtering/average-filter-results.jpeg){: width="600" height="600"}
 
-从处理结果来看，两种滤波器的差异并不明显。因此，通过观察频率响应更容易理解它们的区别。本文仅对均值滤波器进行简要介绍，更详细的说明请参考 📎 <a href="{{ site.baseurl }}/posts/Frequency-Domain-Filter-1/"> >> [图像去噪初步(1)--均值滤波器] << </a> 。
+从处理结果来看，两种滤波器的差异并不明显。因此，通过观察频率响应更容易理解它们的区别。本文仅对均值滤波器进行简要介绍，更详细的说明请参考 📎 <a href="{{ site.baseurl }}/posts/Denoise-1/"> >> Image Denoise : 均值滤波器 << </a> 。
 
 #### Matlab 代码
 ```matlab

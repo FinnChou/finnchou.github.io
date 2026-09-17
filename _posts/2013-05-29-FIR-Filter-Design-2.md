@@ -243,10 +243,10 @@ $$
 <table>
     <tr>
         <td> 
-            <img src="{{ site.baseurl }}/assets/resource/Design-FIR-Filter/input_signal.jpeg" alt="输入信号" width="600">
+            <img src="/assets/resource/Design-FIR-Filter/input_signal.jpeg" alt="输入信号" width="600">
         </td>
         <td> 
-            <img src="{{ site.baseurl }}/assets/resource/Design-FIR-Filter/output_signal.jpeg" alt="输出信号" width="600">
+            <img src="/assets/resource/Design-FIR-Filter/output_signal.jpeg" alt="输出信号" width="600">
         </td>
     </tr>
 </table> 
