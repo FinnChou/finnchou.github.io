@@ -45,7 +45,7 @@ $$
 
 $$
 \begin{aligned}
-A_s = -20 \log_{10}|H_a(e^{j\omega})|
+A_s = -20 \log_{10}|H(e^{j\omega_s})|
 \end{aligned}
 $$
 
@@ -53,7 +53,7 @@ $$
 
 $$
 \begin{aligned}
-N = \frac{1}{2} \frac{\log_{10}(10^{\frac{A_s}{10}}-1)}{\log_{10}\bigg( \frac{\tan(\omega/2)}{\tan(\omega_c / 2)} \bigg)}
+N = \frac{1}{2} \frac{\log_{10}(10^{\frac{A_s}{10}}-1)}{\log_{10}\bigg( \frac{\tan(\omega_s/2)}{\tan(\omega_c / 2)} \bigg)}
 \end{aligned}
 $$
 
@@ -85,7 +85,7 @@ $$
 \end{aligned}
 $$
 
-通过这个式子，就可以很方便的计算极点与零点。很容易的能看出，这个滤波器的零点是-1，并且为$N$重极点（这里是振幅特性的平方所以不是$2N$）。此时，分母多项式为
+通过这个式子，就可以很方便的计算极点与零点。很容易的能看出，这个滤波器的零点是-1，并且为$N$重零点（这里是振幅特性的平方所以不是$2N$）。此时，分母多项式为
 
 $$
 \begin{aligned}
@@ -120,7 +120,7 @@ $$
 q_k = \left( \frac{1-z^{-1}}{1+z^{-1}} \right) = \left \{
 \begin{array}{l}
 \tan(\frac{\omega_c}{2}) \exp \left( j \frac{2k+1}{2N}\pi \right),& \hspace{2mm}N: \text{even number}, \hspace{2mm}k=0,1,2,\cdots,2N-1 \\
-\tan(\frac{\omega_c}{2}) \exp \left( j \frac{k}{2N}\pi \right),& \hspace{2mm}N: \text{odd number}, \hspace{2mm}k=0,1,2,\cdots,2N-1 \\
+\tan(\frac{\omega_c}{2}) \exp \left( j \frac{k}{N}\pi \right),& \hspace{2mm}N: \text{odd number}, \hspace{2mm}k=0,1,2,\cdots,2N-1 \\
 \end{array}
 \right.
 \end{aligned}
@@ -139,15 +139,15 @@ $$
 
 $$
 \begin{aligned}
-H(z) = \frac{K(1-z^{-1})^{N}}{\prod_{|p_k| < 1} (1-p_k z^{-1})}
+H(z) = \frac{K(1+z^{-1})^{N}}{\prod_{|p_k| < 1} (1-p_k z^{-1})}
 \end{aligned}
 $$
 
-其中增益系数$K$可通过以下公式计算：
+其中增益系数$K$由直流增益$H(z)\big|_{z=1} = 1$定出，可通过以下公式计算：
 
 $$
 \begin{aligned}
-K = \frac{1}{2^N} \cdot \frac{1}{\prod_{|p_k| < 1} (1- p_k)}
+K = \frac{1}{2^N} \cdot \prod_{|p_k| < 1} (1- p_k)
 \end{aligned}
 $$
 
@@ -226,13 +226,13 @@ for(count = 0;count <= N;count++)   {K_z += *(az+count);}
 K_z = (K_z/pow ((double)2,N));
 ```
 
-最后，使用之前在IIR的间接设计的乘开算法，我们就可以得到一个模拟滤波器的系数了。
+最后，使用之前在IIR的间接设计的乘开算法，我们就可以得到这个数字滤波器的系数了。
 
 所有的代码如下所示:
 ```c++
 #include <stdio.h>
 #include <math.h>
-#include <malloc.h>
+#include <stdlib.h>
 #include <string.h>
  
  
@@ -385,6 +385,15 @@ int Direct( double Cotoff,
  
       COMPLEX Res[N+1],Res_Save[N+1];
  
+      /* Res / Res_Save 在多项式展开中以 += 累加，必须先清零，
+         否则读到的是未初始化的栈内容（未定义行为）。 */
+      for(count = 0;count <= N;count++)
+      {
+          Res[count].Real_part = 0;      Res[count].Imag_Part = 0;
+          Res_Save[count].Real_part = 0; Res_Save[count].Imag_Part = 0;
+      }
+      count = 0;
+ 
       Res[0].Real_part = poles[0].Real_part; 
       Res[0].Imag_Part= poles[0].Imag_Part;
  
@@ -394,6 +403,12 @@ int Direct( double Cotoff,
  
       for(count_1 = 0;count_1 < N-1;count_1++)
       {
+	     for(count = 0;count <= N;count++)
+	     {
+	          Res_Save[count].Real_part = 0;
+	          Res_Save[count].Imag_Part = 0;
+	     }
+ 
 	     for(count = 0;count <= count_1 + 2;count++)
 	     {
 	          if(0 == count)
@@ -602,10 +617,10 @@ $$
 <table>
     <tr>
         <td> 
-            ![IIR滤波器结果3](/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-3.jpeg){: width="600" height="600"}
+            <img src="{{ site.baseurl }}/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-3.jpeg" alt="IIR滤波器结果3" width="600">
         </td>
         <td> 
-            ![IIR滤波器结果4](/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-4.jpeg){: width="600" height="600"}
+            <img src="{{ site.baseurl }}/assets/resource/Design-IIR-Filter-2/Design-IIR-Filter-2-4.jpeg" alt="IIR滤波器结果4" width="600">
         </td>
     </tr>
 </table>
