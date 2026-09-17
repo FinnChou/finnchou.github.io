@@ -27,7 +27,7 @@ $$
 ![带阻滤波器-原始图像与频谱](/assets/resource/Frequency-Domain-Filter-2/bandstop_original.jpeg){: width="600" height="600"}
 ![带阻滤波器-加噪图像与频谱](/assets/resource/Frequency-Domain-Filter-2/bandstop_noisy.jpeg){: width="600" height="600"}
 
-可以看到，图像的原始内容完全被严重的周期性噪声淹没。如果仅通过观察图像本身，在空间域内执行滤波操作去除噪声时，很难确定合适的滤波器参数。但在频率域内考虑去噪问题，我们只需将频率域中孤立的亮点抹除即可。此时，使用带阻滤波器能够获得很好的去噪效果。为避免振铃现象，我们选择使用2次的巴特沃斯带阻滤波器。下图展示了所使用的滤波器及实际去噪效果：
+可以看到，图像的原始内容完全被严重的周期性噪声淹没。如果仅通过观察图像本身，在空间域内执行滤波操作去除噪声时，很难确定合适的滤波器参数。但在频率域内考虑去噪问题，我们只需将频率域中孤立的亮点抹除即可。此时，使用带阻滤波器能够获得很好的去噪效果。为避免振铃现象，我们选择使用3次的巴特沃斯带阻滤波器。下图展示了所使用的滤波器及实际去噪效果：
 
 ![带阻滤波器振幅特性](/assets/resource/Frequency-Domain-Filter-2/bandstop_filter_amplitude.jpeg){: width="600" height="600"}
 ![带阻滤波器滤波效果](/assets/resource/Frequency-Domain-Filter-2/bandstop_filter_result.jpeg){: width="600" height="600"}
@@ -101,7 +101,7 @@ for x = 1:1:M
 end
 
 
-%% ---------Bondpass Filters (Fre. Domain)------------
+%% ---------Bandreject Filters (Fre. Domain)------------
 H_1 = ones(P,Q);
 
 for x = (-P/2):1:(P/2)-1
@@ -179,7 +179,7 @@ xlabel('f).Result of denoise');
 
 $$
 \begin{aligned}
-H_{NR}(u, v) = \prod_{k=1}^{Q} H_k(u,v) H_{-k}(u,v)
+H_{NR}(u, v) = \prod_{k=1}^{K} H_k(u,v) H_{-k}(u,v)
 \end{aligned}
 $$
 
@@ -187,7 +187,7 @@ $$
 
 $$
 \begin{aligned}
-H_{NR}(u, v) = \prod_{k=1}^{Q} \Biggl[  \frac{1}{1 + \Big( D_{0k} / D_{k}(u,v) \Big)^{2n}} \Biggl] \Biggl[  \frac{1}{1 + \Big( D_{0k} / D_{-k}(u,v) \Big)^{2n}} \Biggl] 
+H_{NR}(u, v) = \prod_{k=1}^{K} \Biggl[  \frac{1}{1 + \Big( D_{0k} / D_{k}(u,v) \Big)^{2n}} \Biggl] \Biggl[  \frac{1}{1 + \Big( D_{0k} / D_{-k}(u,v) \Big)^{2n}} \Biggl] 
 \end{aligned}
 $$
 
