@@ -32,6 +32,7 @@ SITE_COLOR = (222, 224, 230)
 CATEGORY_STYLE = {
     "数字信号处理": {"accent": (56, 189, 248), "motif": "wave"},
     "数字图像处理": {"accent": (167, 139, 250), "motif": "grid"},
+    "色彩科学": {"accent": (251, 146, 60), "motif": "wave"},
 }
 DEFAULT_STYLE = {"accent": (148, 163, 184), "motif": "wave"}
 
