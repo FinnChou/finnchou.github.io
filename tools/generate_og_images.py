@@ -32,9 +32,24 @@ SITE_COLOR = (222, 224, 230)
 CATEGORY_STYLE = {
     "数字信号处理": {"accent": (56, 189, 248), "motif": "wave"},
     "数字图像处理": {"accent": (167, 139, 250), "motif": "grid"},
-    "色彩科学": {"accent": (251, 146, 60), "motif": "wave"},
+    "色彩科学": {"accent": (251, 146, 60), "motif": "prism"},
 }
 DEFAULT_STYLE = {"accent": (148, 163, 184), "motif": "wave"}
+
+# prism 纹样用的可见光谱锚点，长波在前——与出射光线偏折由小到大的顺序一致
+SPECTRUM = [
+    (255, 71, 60), (255, 138, 41), (255, 206, 61), (104, 214, 108),
+    (58, 198, 219), (74, 132, 246), (154, 94, 235),
+]
+
+
+def spectrum_color(f):
+    """在光谱锚点之间线性插值。f=0 取红端，f=1 取紫端。"""
+    pos = f * (len(SPECTRUM) - 1)
+    i = min(int(pos), len(SPECTRUM) - 2)
+    t = pos - i
+    a, b = SPECTRUM[i], SPECTRUM[i + 1]
+    return tuple(int(round(a[c] + (b[c] - a[c]) * t)) for c in range(3))
 
 FONT_PATH = "/System/Library/Fonts/Hiragino Sans GB.ttc"
 FONT_FALLBACK = "/System/Library/Fonts/STHeiti Medium.ttc"
@@ -142,6 +157,47 @@ def draw_background(img, style):
                     draw.line([prev, (x, y)],
                               fill=accent + (int(alpha * fade),), width=width)
                 prev = (x, y)
+    elif style["motif"] == "prism":
+        # 棱镜色散：一束白光进三棱镜，散作可见光谱——「光与色」最经典的图景
+        apex, bl, br = (852, 416), (777, 546), (927, 546)
+        entry = ((apex[0] + bl[0]) / 2, (apex[1] + bl[1]) / 2)
+        exit_pt = ((apex[0] + br[0]) / 2, (apex[1] + br[1]) / 2)
+
+        # 入射白光：同样从左端淡入，与另外两种纹样的处理保持一致
+        step = 4
+        for x in range(DECOR_X, int(entry[0]), step):
+            fade = min(1.0, (x - DECOR_X) / 150)
+            draw.line([(x, entry[1]), (x + step, entry[1])],
+                      fill=(238, 240, 246) + (int(126 * fade),), width=3)
+        # 棱镜内部的光路
+        draw.line([entry, exit_pt], fill=(238, 240, 246, 58), width=2)
+
+        # 出射光谱：红偏折最小、紫最大，自出射点向右下张开成一片连续色带。
+        # 逐像素着色而不是叠画多条光线——后者在交叠处 alpha 会迅速累积到饱和，
+        # 亮度就再也压不下来了
+        x0, y0 = exit_pt
+        ang0, ang1 = math.radians(-2.0), math.radians(11.5)
+        feather = math.radians(0.7)          # 扇形上下缘的羽化宽度
+        reach = W - x0
+        layer = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        px = layer.load()
+        for X in range(int(x0), W):
+            dx = X - x0
+            for Y in range(DECOR_Y, H):
+                ang = math.atan2(Y - y0, dx)
+                if ang < ang0 - feather or ang > ang1 + feather:
+                    continue
+                edge = min(ang - (ang0 - feather), (ang1 + feather) - ang)
+                aa = min(1.0, edge / feather)
+                f = min(1.0, max(0.0, (ang - ang0) / (ang1 - ang0)))
+                fade = 1 - 0.32 * min(1.0, math.hypot(dx, Y - y0) / reach)
+                r, g, b = spectrum_color(f)
+                px[X, Y] = (r, g, b, int(120 * fade * aa))
+        img.alpha_composite(layer)
+
+        # 棱镜轮廓压在光路之上
+        for a, b in ((apex, bl), (bl, br), (br, apex)):
+            draw.line([a, b], fill=accent + (96,), width=2)
     else:
         # 像素网格：呼应图像处理
         cell = 36
