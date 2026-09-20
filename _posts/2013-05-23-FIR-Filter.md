@@ -150,3 +150,5 @@ int main(void)
 为了直观地展示该FIR滤波器的特性，下图给出了其在MATLAB中绘制的单位冲激响应曲线。从图中我们可以清晰地观察到滤波器的时域特性。
 
 ![FIR滤波器系统响应](/assets/resource/FIR-Filter/FIR-Filter-Sys.jpeg){: width="300" height="300"}
+
+需要说明的是，上述实现中滤波器系数与信号均以`double`存放，乘加也直接交由浮点运算完成。而在定点DSP这类不具备浮点运算单元的平台上，整套运算都需要改写为整数运算。相关的讨论，请参考 📎 <a href="{{ site.baseurl }}/posts/Fixed-Point-Arithmetic/"> >>[番外2]定点计算与浮点计算 << </a> 。
