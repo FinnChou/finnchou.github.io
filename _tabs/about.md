@@ -134,7 +134,7 @@ Finn（フィン）と申します。日本の東北大学大学院工学研究�
 
 [「光と色の話」]: https://www.ccs-inc.co.jp/guide/column/light_color/
 
-第一篇已整理完毕，其余部份仍在，施工中 ... 
+施工中 ... 
 
 <a href="{{ site.baseurl }}/categories/色彩科学/" class="series-link">色彩科学系列Posts</a>
 
