@@ -10,7 +10,7 @@ image:
   alt: "『颜色』是什么：光、感觉与物体色"
 ---
 
-> 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 11、12 回。这个专栏的前 10 回讲的是『光』，从第 11 回起话题才转到『颜色』——我觉得这是个很合适的切入点：它不从色卡和色轮讲起，而是先追问一句「颜色到底存在于哪里」。原文（日文）：[vol.11](http://www.ccs-inc.co.jp/s2_ps/s1/s_04/column/light_color/vol11.html) / [vol.12](http://www.ccs-inc.co.jp/s2_ps/s1/s_04/column/light_color/vol12.html)。为论述连贯，两回合并为一篇，并补充了少量笔者注。文中图表均为重绘，数据来源与图片出处见各图下方。
+> 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 11、12 回。这个专栏的前 10 回讲的是『光』，从第 11 回起话题才转到『颜色』——我觉得这是个很合适的切入点：它不从色卡和色轮讲起，而是先追问一句「颜色到底存在于哪里」。原文（日文）：[vol.11](https://www.ccs-inc.co.jp/guide/column/light_color/vol11.html) / [vol.12](https://www.ccs-inc.co.jp/guide/column/light_color/vol12.html)。为论述连贯，两回合并为一篇，并补充了少量笔者注。文中图表均为重绘，数据来源与图片出处见各图下方。
 {: .prompt-info }
 
 ### 前言
