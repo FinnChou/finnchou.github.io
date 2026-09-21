@@ -80,7 +80,7 @@ _CIE 1931 标准观察者（2° 视场）的等色函数_
 
 此外，上图中 $\overline{x}(\lambda)$ 呈双峰形，初看之下颇不自然。这是把基于实际三原色 $R$、$G$、$B$ 的 RGB 表色系，经数学上的坐标变换转换为基于虚拟三原色 $X$、$Y$、$Z$ 的 XYZ 表色系所导致的。
 
-> **译者注**：原稿这里写着「有的版本，蓝色下面那一段 $\overline{x}(\lambda)$ 为负值」，系当年的误记。CIE 1931 的 $\overline{x}(\lambda)$、$\overline{y}(\lambda)$、$\overline{z}(\lambda)$ 在整个可见光范围内都是非负的，XYZ 表色系设计虚拟三原色的目的之一正是消除负值。出现负值的是 RGB 表色系的等色函数 $\overline{r}(\lambda)$、$\overline{g}(\lambda)$、$\overline{b}(\lambda)$，下一回会详细讲到。
+> **译者注**：原稿这里写着「有的版本，蓝色下面那一段 $\overline{x}(\lambda)$ 为负值」，系当年的误记。CIE 1931 的 $\overline{x}(\lambda)$、$\overline{y}(\lambda)$、$\overline{z}(\lambda)$ 在整个可见光范围内都是非负的，XYZ 表色系设计虚拟三原色的目的之一正是消除负值。出现负值的是 RGB 表色系的等色函数 $\overline{r}(\lambda)$、$\overline{g}(\lambda)$、$\overline{b}(\lambda)$，下一篇会详细讲到。
 {: .prompt-info }
 
 三种等色函数与视锥细胞的对应关系如下：
