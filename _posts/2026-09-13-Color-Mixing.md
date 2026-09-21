@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "混色：加法、减法与中间混色"
-date: 2016-06-23 22:30:00 +0800
+date: 2026-09-13 22:30:00 +0800
 categories: 色彩科学
 tags: [色彩科学, 混色, 三原色, 白光LED]
 math: true
