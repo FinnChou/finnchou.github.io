@@ -1,13 +1,13 @@
 ---
 layout: post
-title: "颜色的客观表达（三）：从 CIE-RGB 到 CIE-XYZ"
+title: "颜色的客观表达（三）：从 RGB 到 XYZ"
 date: 2026-09-20 23:30:00 +0800
 categories: 色彩科学
 tags: [色彩科学, 表色系, CIE, 等色函数]
 math: true
 image:
   path: /assets/resource/og/CIE-RGB-to-XYZ.png
-  alt: "颜色的客观表达（三）：从 CIE-RGB 到 CIE-XYZ"
+  alt: "颜色的客观表达（三）：从 RGB 到 XYZ"
 ---
 
 > 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 30 回，是「颜色的客观表达」三篇中的最后一篇。原文（日文）：[vol.30](https://www.ccs-inc.co.jp/guide/column/light_color/vol30.html)。
