@@ -273,13 +273,47 @@ def parse_post(path):
     return title, cat, slug
 
 
+def render_site(out_path):
+    """站点级的社交预览图（_config.yml 的 social_preview_image）：
+    三棱镜底纹，分类行列出三个系列并各用自己的强调色，标题为站名。"""
+    style = CATEGORY_STYLE["色彩科学"]
+    img = Image.new("RGBA", (W, H), BG + (255,))
+    draw_background(img, style)
+    draw = ImageDraw.Draw(img)
+    cat_font = load_font(26, bold=False)
+    x, y = MARGIN, 122
+    for i, (name, st) in enumerate(CATEGORY_STYLE.items()):
+        if i:
+            draw.text((x, y), "·", font=cat_font, fill=(90, 94, 108))
+            x += draw.textlength("·", font=cat_font) + 14
+        draw.text((x, y), name, font=cat_font, fill=st["accent"])
+        x += draw.textlength(name, font=cat_font) + 14
+    draw.text((MARGIN, 184), SITE_NAME, font=load_font(96, bold=True), fill=TITLE_COLOR)
+    draw.text((MARGIN, 320), "计算机视觉、Camera 成像、色彩科学与数字图像处理的技术笔记",
+              font=load_font(30, bold=False), fill=META_COLOR)
+    draw.rounded_rectangle([MARGIN - 28, 126, MARGIN - 20, 300], radius=4, fill=style["accent"])
+    draw.line([(MARGIN, H - 132), (DECOR_X - 80, H - 132)], fill=(58, 62, 74), width=1)
+    draw.text((MARGIN, H - 106), SITE_NAME, font=load_font(30, bold=True), fill=SITE_COLOR)
+    draw.text((MARGIN, H - 64), "finnchou.github.io", font=load_font(23, bold=False), fill=META_COLOR)
+    os.makedirs(os.path.dirname(out_path), exist_ok=True)
+    img.convert("RGB").save(out_path, "PNG", optimize=True)
+    return out_path
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--sample", action="store_true",
                     help="只生成 3 张样例用于预览")
+    ap.add_argument("--site", action="store_true",
+                    help="只生成站点级的社交预览图 site-preview.png")
     ap.add_argument("--out", default="assets/resource/og",
                     help="输出目录")
     args = ap.parse_args()
+
+    if args.site:
+        out = render_site(os.path.join(args.out, "site-preview.png"))
+        print(f"{out}  {os.path.getsize(out) / 1024:.0f}KB")
+        return
 
     posts = sorted(glob.glob("_posts/*.md"))
     if args.sample:
