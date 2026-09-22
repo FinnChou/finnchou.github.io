@@ -10,13 +10,6 @@ image:
   alt: "颜色的客观表达（一）：曼塞尔表色系"
 ---
 
-> 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 28 回。从这一篇起，话题转向**如何客观地、定量地描述一个色彩**。原文（日文）：[vol.28](https://www.ccs-inc.co.jp/guide/column/light_color/vol28.html)。
->
-> 原文的第 27 回是整个「表色」话题的开篇，当年我判断它基本是概述、没有翻译，所以本系列从第 28 回开始。为了不让本文的开头显得突兀，文首补了一小段承接，内容取自 [vol.27](https://www.ccs-inc.co.jp/guide/column/light_color/vol27.html) 的分类框架。
->
-> 文中图表分重绘与外部引用两类，数据来源与图片许可均见各图下方及文末说明。
-{: .prompt-info }
-
 ### 从「说不清」到「说得清」
 
 小时候在学习绘画的培训班上，老师会用名字来称呼一些颜色——群青、赭石等等。这类**色名**好用，而且有人文主义的浪漫在里面。但它靠的是文化积累与个人经验，无法客观且定量地描述一个色彩。而在工业上显然行不通：包装的底色、外壳的配色、农产品出货时的成熟度判定，都需要一把公认的尺子。
@@ -192,6 +185,13 @@ _曼塞尔表色系的记法（模式图）_
 > **图中数据来源**：色相环、明度尺、明度–反射率曲线与 5R 等色相面中所有的色卡颜色与数值，均取自 **Munsell Renotation System 的 "Real" 数据集**（1943 年 Newhall, Nickerson & Judd 的原始论文中列出的、位于 MacAdam 极限之内的真实色卡），经由开源库 [colour-science](https://www.colour-science.org/)（BSD-3-Clause）内置的数据表获得，上游为 Munsell Color Science Laboratory (RIT) 公开的 `real.dat`。
 >
 > renotation 数据的色度坐标以 CIE 标准照明体 C 为中性点，图中换算到 sRGB 时经 Bradford 色适应变换到 D65 白点。视感反射率 $Y$ 只由明度 $V$ 决定，其数值以氧化镁（MgO）为基准，换算到以完全漫反射体为基准的 ASTM D1535 数值需乘以 $0.975$。
+{: .prompt-info }
+
+> **本文来源**：整理自 CCS 株式会社的技术专栏「光と色の話」第 28 回。从这一篇起，话题转向**如何客观地、定量地描述一个色彩**。原文（日文）：[vol.28](https://www.ccs-inc.co.jp/guide/column/light_color/vol28.html)。
+>
+> 原文的第 27 回是整个「表色」话题的开篇，当年我判断它基本是概述、没有翻译，所以本系列从第 28 回开始。为了不让本文的开头显得突兀，文首补了一小段承接，内容取自 [vol.27](https://www.ccs-inc.co.jp/guide/column/light_color/vol27.html) 的分类框架。
+>
+> 文中图表分重绘与外部引用两类，数据来源与图片许可均见各图下方及文末说明。
 {: .prompt-info }
 
 ## 注释
