@@ -3,10 +3,12 @@
 
 相比等爬虫自己上门，IndexNow 是推模式，发完新文章跑一次就行。
 Google 不支持该协议，它那边仍需走 Search Console。
+CI 在每次部署完成后会以 --since 模式自动运行（见 .github/workflows/pages-deploy.yml）。
 
 用法:
     python3 tools/indexnow_submit.py                    # 推送 sitemap 里的全部 URL
     python3 tools/indexnow_submit.py <url> [<url> ...]  # 只推送指定的 URL
+    python3 tools/indexnow_submit.py --since=<rev>      # 只推送 <rev>..HEAD 间改动过的文章 / 页面
     python3 tools/indexnow_submit.py --dry              # 只打印将要提交的内容
 
 前置条件：密钥文件必须已部署到线上且可访问，
@@ -14,6 +16,8 @@ Google 不支持该协议，它那边仍需走 Search Console。
 """
 
 import json
+import re
+import subprocess
 import sys
 import urllib.request
 import urllib.error
@@ -28,6 +32,12 @@ UA = "Mozilla/5.0 (compatible; indexnow-submitter/1.0)"
 
 SM_NS = "{http://www.sitemaps.org/schemas/sitemap/0.9}"
 
+# 源文件 → 线上路径，须与 _config.yml 里的 permalink 一致（posts: /posts/:title/，tabs: /:title/）
+SOURCE_ROUTES = [
+    (re.compile(r"^_posts/(?:.*/)?\d{4}-\d{2}-\d{2}-(.+)\.(?:md|markdown)$"), "/posts/{}/"),
+    (re.compile(r"^_tabs/(.+)\.md$"), "/{}/"),
+]
+
 
 def fetch(url, timeout=20):
     req = urllib.request.Request(url, headers={"User-Agent": UA})
@@ -38,6 +48,27 @@ def fetch(url, timeout=20):
 def urls_from_sitemap():
     root = ET.fromstring(fetch(SITEMAP))
     return [loc.text.strip() for loc in root.iter(f"{SM_NS}loc") if loc.text]
+
+
+def urls_from_git_diff(base):
+    """base..HEAD 之间新增、修改或删除的文章 / 页面对应的 URL。
+
+    删掉的文章也要报：IndexNow 的约定是让搜索引擎回来抓一次，见到 404 后自行下架。
+    --no-renames 把改名拆成「删旧 + 增新」，新旧两个地址都会提交。
+    """
+    out = subprocess.run(
+        ["git", "-c", "core.quotepath=off", "diff", "--name-only", "--no-renames",
+         base, "HEAD", "--", "_posts", "_tabs"],
+        check=True, capture_output=True, text=True,
+    ).stdout
+    urls = []
+    for path in out.splitlines():
+        for pattern, route in SOURCE_ROUTES:
+            m = pattern.match(path)
+            if m:
+                urls.append(f"https://{HOST}" + route.format(m.group(1)))
+                break
+    return urls
 
 
 def verify_key():
@@ -86,8 +117,16 @@ STATUS_HINT = {
 def main():
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
     dry = "--dry" in sys.argv
+    since = next((a.split("=", 1)[1] for a in sys.argv[1:] if a.startswith("--since=")), None)
 
-    urls = args if args else urls_from_sitemap()
+    if since:
+        urls = urls_from_git_diff(since)
+        if not urls:
+            # 只改了配置、脚本或图片的提交很常见，这不算失败
+            print(f"{since}..HEAD 之间没有改动文章或页面，无需提交")
+            return 0
+    else:
+        urls = args if args else urls_from_sitemap()
     bad = [u for u in urls if not u.startswith(f"https://{HOST}/")]
     if bad:
         print("以下 URL 不属于本站，已跳过：", file=sys.stderr)
