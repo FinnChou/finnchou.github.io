@@ -5,15 +5,16 @@ sitemap: false
 {%- assign path = "/posts/Histogram-Processing/" -%}
 {%- assign target = path | relative_url -%}
 <!DOCTYPE html>
-<html lang="{{ site.lang | default: 'zh-CN' }}">
+<html lang="{{ site.lang | default: 'zh-CN' }}" style="background:#1b1b1e">
   <head>
     <meta charset="utf-8">
+    <script>location.replace("{{ target }}");</script>
     <meta http-equiv="refresh" content="0; url={{ target }}">
     <link rel="canonical" href="{{ path | absolute_url }}">
     <meta name="robots" content="noindex">
     <title>页面已移动</title>
   </head>
-  <body>
-    <p>本文已移动到 <a href="{{ target }}">Histogram Processing : 直方图处理</a>。</p>
+  <body style="margin:0;background:#1b1b1e">
+    <noscript><p style="color:#ccc;font:16px sans-serif;padding:24px">本文已移动到 <a href="{{ target }}">Histogram Processing : 直方图处理</a>。</p></noscript>
   </body>
 </html>
