@@ -3,9 +3,6 @@
 # Import the theme
 theme: jekyll-theme-chirpy
 
-# Enable MathJax for the entire site
-math: true
-
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
@@ -207,7 +204,7 @@ defaults:
     values:
       layout: page
       permalink: /:title/
-      math: true  # 为所有页面默认启用math渲染
+      # 不默认开 math：归档 / 分类 / 标签页没有公式，要用的页面（如 about）在自己的 front matter 里开
 
 sass:
   style: compressed
