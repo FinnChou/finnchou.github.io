@@ -464,7 +464,10 @@ def callout(d, box, s, f, fill=(252, 250, 232), outline=(224, 214, 170),
         # 从气泡边缘起笔，避免尾巴压住文字
         ex = cx + math.cos(ang) * (x1 - x0) / 2
         ey = cyy + math.sin(ang) * (y1 - y0) / 2
-        line(d, (ex, ey, tx, ty), fill=outline, width=1.4)
+        # 引线要比边框深一截、粗一点，否则铺在彩色底上看不见
+        tail_fill = tuple(int(c * 0.66) for c in outline)
+        dashed(d, (ex, ey), (tx, ty), fill=tail_fill, width=1.6, dash=6, gap=4)
+        ellipse(d, (tx - 2.5, ty - 2.5, tx + 2.5, ty + 2.5), fill=tail_fill)
 
 
 def checker(d, box, size=5, a=(255, 255, 255), b=(232, 234, 240)):
