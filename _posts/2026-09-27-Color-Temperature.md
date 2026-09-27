@@ -10,11 +10,6 @@ image:
   alt: "照明光的色味：色温与相关色温"
 ---
 
-> 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 33 回。原文（日文）：[vol.33](https://www.ccs-inc.co.jp/guide/column/light_color/vol33.html)。
->
-> 文中图表全部为重绘，黑体辐射的曲线与轨迹均由普朗克公式算出，数据来源见文末说明。开头「身边接近黑体的东西」一组照片换用 Wikimedia Commons 上的公有领域 / CC0 照片，出处见图注。
-{: .prompt-info }
-
 在与照明相关的领域，**色温**常被用作表示光的色味的一种尺度。例如，白炽灯那样略带红色调的光，色温较低；昼光色荧光灯那样带蓝白色调的光，色温较高。
 
 关于光的颜色，本系列前面几篇已经讲过：例如在 XYZ 表色系中，指定色度坐标 $(x, y)$，就能客观、准确地定义一个光的颜色。但是，听到 $(x, y)$ 两个数值就能立刻联想出这个颜色的人，除色彩专家之外几乎没有。人对一维的数字可以直观地理解，二维、三维乃至更多维的数字，在头脑中就难以把握了。因此，即使牺牲一些准确性，只要能用一个数字表示大致的色味，实用上就有很大的价值。这正是「色温」被广泛使用的理由。
@@ -132,6 +127,11 @@ $$ -0.02 \le d_{uv} \le +0.02 $$
 > 三张实物照片取自 Wikimedia Commons，均为公有领域或 CC0：[Candle flame (1).jpg](https://commons.wikimedia.org/wiki/File:Candle_flame_(1).jpg)（Jon Sullivan）、[Hot embers 2.jpg](https://commons.wikimedia.org/wiki/File:Hot_embers_2.jpg)（MUuslimabonu）、[Close up picture of a filament bulb.jpg](https://commons.wikimedia.org/wiki/File:Close_up_picture_of_a_filament_bulb.jpg)（BhavyaTarun1708）。图注里的温度是这类光源的典型值，供参考。
 >
 > 荧光灯光谱取 **CIE 照明体 FL10**（5000 K 三波长域荧光灯，CIE 15:2004 数据表），D55、D65、D75、C 的色度亦取 CIE 15:2004 表值，均经由开源库 [colour-science](https://www.colour-science.org/)（[GitHub](https://github.com/colour-science/colour) / BSD-3-Clause）内置的数据表获得。由 FL10 的光谱算出其色度为 $(0.3458, 0.3588)$，相关色温 4998 K，$d_{uv} = +0.0033$；原文所举的 $(0.344, 0.349)$ 算得相关色温 5034 K，$d_{uv} = -0.0009$。
+{: .prompt-info }
+
+> **本文来源**：整理自 CCS 株式会社的技术专栏「光と色の話」第 33 回。原文（日文）：[vol.33](https://www.ccs-inc.co.jp/guide/column/light_color/vol33.html)。
+>
+> 文中图表全部为重绘，黑体辐射的曲线与轨迹均由普朗克公式算出，数据来源见文末说明。开头「身边接近黑体的东西」一组照片换用 Wikimedia Commons 上的公有领域 / CC0 照片，出处见图注。
 {: .prompt-info }
 
 ## 注释

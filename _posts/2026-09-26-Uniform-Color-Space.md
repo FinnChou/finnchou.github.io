@@ -10,11 +10,6 @@ image:
   alt: "色差与均匀色空间：CIELUV 与 CIELAB"
 ---
 
-> 本文整理自 CCS 株式会社的技术专栏「光と色の話」第 32 回。原文（日文）：[vol.32](https://www.ccs-inc.co.jp/guide/column/light_color/vol32.html)。
->
-> 原文把 CIE 1960 UCS 色度图与 CIE 1964 U\*V\*W\* 色空间放在注释里，本文按时间顺序把它们提到正文中，其余注释保留在文末。文中图表全部为重绘，数据来源见文末说明；其中一张明度曲线直接引用《颜色的客观表达（一）》的图。
-{: .prompt-info }
-
 对于颜色相对基准色（目标色）偏离的程度，也就是**色差**，需要加以管理。最直观、简便的做法，是用曼塞尔色卡等设定一个容许范围，再与目标色目测比较。但从客观、定量、长期稳定的颜色管理的角度看，这种目测法难以胜任。如果能不依赖颜色的种类、只用一个数值就把色差的大小表示出来，将极为便利。
 
 ### $xy$ 色度图上色差的不均匀性与 MacAdam 的颜色辨别椭圆
@@ -180,6 +175,11 @@ _色差 $\Delta E^*_{ab}$ 是 CIELAB 色空间中 $P$、$Q$ 两点的直线距�
 > **图中数据来源**：MacAdam 的颜色辨别椭圆取自 Wyszecki & Stiles《Color Science》第 2 版表 2(5.4.1) 的 25 个色中心（观察者 PGN；表中给出的是 MacAdam 1942 年论文中的观测值及其拟合值，本文用拟合值），经由开源库 [colour-science](https://www.colour-science.org/)（[GitHub](https://github.com/colour-science/colour) / BSD-3-Clause）内置的数据表 [`macadam_ellipses.py`](https://github.com/colour-science/colour/blob/develop/colour/models/datasets/macadam_ellipses.py) 获得，原始文献见注释[^ref1][^ref2]。表中半轴的单位为 $10^{-3}$，图上按惯例放大 10 倍。$uv$、$u'v'$ 色度图上的椭圆，由 $xy$ 色度图上的椭圆边界逐点经本文的变换式算出。$xy$ 色度图与光谱轨迹取自 CIE 1931 2° 标准观察者，与前几篇相同。
 >
 > 明度－反射率曲线的数据来源见《颜色的客观表达（一）》。CIELAB 色环的颜色由 $L^*a^*b^*$ 经 D65 白点换算为 sRGB，超出显示色域的部分已裁剪，只作示意。其余为模式图，不承载数据。
+{: .prompt-info }
+
+> **本文来源**：整理自 CCS 株式会社的技术专栏「光と色の話」第 32 回。原文（日文）：[vol.32](https://www.ccs-inc.co.jp/guide/column/light_color/vol32.html)。
+>
+> 原文把 CIE 1960 UCS 色度图与 CIE 1964 U\*V\*W\* 色空间放在注释里，本文按时间顺序把它们提到正文中，其余注释保留在文末。文中图表全部为重绘，数据来源见文末说明；其中一张明度曲线直接引用《颜色的客观表达（一）》的图。
 {: .prompt-info }
 
 ## 注释
