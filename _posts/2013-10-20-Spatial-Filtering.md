@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Spatial Filtering : 空间滤波"
+description: "空间滤波在像素邻域内做二维运算，核心是卷积。本篇介绍均值等平滑滤波器，中值、最大值、最小值等统计排序滤波器，拉普拉斯锐化、高提升滤波与索贝尔滤波器，附 Matlab 代码。"
 date: 2013-10-20 17:28:04 +0800
 categories: 数字图像处理
 tags: [图像处理, 空间滤波]

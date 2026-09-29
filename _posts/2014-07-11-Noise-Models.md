@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Image Denoise : 噪声模型"
+description: "从图像退化模型出发，介绍均匀噪声、高斯噪声、瑞利噪声、伽马噪声与椒盐噪声五种常见噪声的概率分布与直方图特征，并用 Matlab 实现各种噪声的生成。"
 date: 2014-07-11 16:45:12 +0800
 categories: 数字图像处理
 tags: [图像处理, 噪声模型]

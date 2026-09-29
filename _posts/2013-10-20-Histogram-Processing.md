@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Histogram Processing : 直方图处理"
+description: "直方图均衡借助累积分布函数，使图像的灰度分布趋于均匀，从而增强对比度；直方图匹配则把灰度分布变换为指定的形状。本篇讲解两者的原理，附实验结果与 Matlab 代码。"
 date: 2013-10-20 15:47:36 +0800
 categories: 数字图像处理
 tags: [图像处理, 直方图处理]

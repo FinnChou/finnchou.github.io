@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "颜色的客观表达（三）：从 RGB 到 XYZ"
+description: "XYZ 表色系建立在等色实验之上。本篇从三原色的加法混色讲起，介绍等色实验与 RGB 表色系的等色函数、2° 与 10° 观察视场、rg 色度图，以及三刺激值 XYZ 与视锥细胞 LMS 的关系。"
 date: 2026-09-20 23:30:00 +0800
 categories: 色彩科学
 tags: [色彩科学, 表色系, CIE, 等色函数]
