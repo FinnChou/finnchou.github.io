@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Geometric Transform : 几何学变换与图像配准"
+description: "介绍图像的旋转、水平倾斜与垂直倾斜等几何学变换，比较向前映射与向后映射两种实现方式及其插值处理，并讲解利用控制点进行图像配准的方法，附 Matlab 代码。"
 date: 2013-12-08 21:30:24 +0800
 categories: 数字图像处理
 tags: [图像处理, 几何变换, 图像配准]

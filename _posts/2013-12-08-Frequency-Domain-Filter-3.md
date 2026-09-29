@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Frequency Domain Filter : 带阻滤波器与陷波滤波器"
+description: "周期性噪声在空间域难以处理，在频谱上却只是几个孤立的亮点。本篇介绍理想、巴特沃斯与高斯三种带阻滤波器，以及只针对噪声频率的陷波滤波器，并用它们去除周期噪声，附 Matlab 代码。"
 date: 2013-12-08 18:02:49 +0800
 categories: 数字图像处理
 tags: [图像处理, 频域滤波]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Intensity Transformations : 灰度变换"
+description: "参考《Digital Image Processing》第三章，介绍图像负片、对数变换、伽马变换、对比度拉伸、灰度切割与位图切割等逐像素的灰度变换方法，附实验结果与 Matlab 代码。"
 date: 2013-10-14 16:54:36 +0800
 categories: 数字图像处理
 tags: [图像处理, 灰度变换]

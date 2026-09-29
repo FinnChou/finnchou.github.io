@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "色差与均匀色空间：CIELUV 与 CIELAB"
+description: "xy 色度图上相同的距离并不对应相同的色差。本篇从 MacAdam 颜色辨别椭圆讲起，介绍 CIE 1960 UCS 色度图、1964 年的 U*V*W* 色空间与 1976 年的 CIELUV、CIELAB，以及色差 ΔE 的计算。"
 date: 2026-09-26 10:36:00 +0800
 categories: 色彩科学
 tags: [色彩科学, 表色系, CIE, 色差, 均匀色空间]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Frequency Domain Filter : 低通滤波"
+description: "借助傅里叶变换与卷积定理，把空间域的滤波转到频率域中处理。本篇讲解图像在频域中的性质，比较理想、巴特沃斯与高斯三种低通滤波器的特性及振铃现象，附 Matlab 代码。"
 date: 2013-12-08 12:42:43 +0800
 categories: 数字图像处理
 tags: [图像处理, 低通滤波, 频域滤波]

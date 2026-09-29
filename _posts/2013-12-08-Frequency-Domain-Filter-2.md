@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "Frequency Domain Filter : 高通滤波器"
+description: "高通滤波器会衰减直流分量，使图像整体偏暗；保留直流分量并增强高频成分，就得到锐化滤波器。本篇比较理想、巴特沃斯与高斯三种高通滤波器，并介绍频域锐化，附 Matlab 代码。"
 date: 2013-12-08 18:02:49 +0800
 categories: 数字图像处理
 tags: [图像处理, 频域滤波]

@@ -1,6 +1,7 @@
 ---
 layout: post
 title: "4.IIR滤波器基础"
+description: "IIR 滤波器的单位冲击响应无限长，依靠输出的反馈实现。本篇从 N 阶差分方程出发，介绍直接 I 型与直接 II 型两种结构，并给出直接 II 型 IIR 滤波器的 C 语言实现。"
 date: 2013-06-05 22:28:16 +0800
 categories: 数字信号处理
 tags: [IIR滤波器, 滤波器设计]
