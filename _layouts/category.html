@@ -1,0 +1,32 @@
+---
+layout: page
+# The Category layout
+# 覆盖 jekyll-theme-chirpy 7.2.4 的同名布局，升级主题时注意同步。改动两处：
+#   1. 标题下显示系列引言（_data/category_intros.yml）
+#   2. 文章按发布时间正序排列：本站每个分类都是一个系列，正序即阅读顺序
+---
+
+{% include lang.html %}
+
+<div id="page-category">
+  <h1 class="ps-lg-2">
+    <i class="far fa-folder-open fa-fw text-muted"></i>
+    {{ page.title }}
+    <span class="lead text-muted ps-2">{{ page.posts | size }}</span>
+  </h1>
+
+  {% assign intro = site.data.category_intros[page.title] %}
+  {% if intro %}
+    <div class="category-intro content px-md-3">{{ intro | markdownify }}</div>
+  {% endif %}
+
+  <ul class="content ps-0">
+    {% for post in page.posts reversed %}
+      <li class="d-flex justify-content-between px-md-3">
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+        <span class="dash flex-grow-1"></span>
+        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>

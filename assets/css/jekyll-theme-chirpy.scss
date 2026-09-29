@@ -53,3 +53,21 @@ article > header {
     border-radius: 10px 0 0 10px;
   }
 }
+
+/*
+ * 分类页顶部的系列引言（见 _layouts/category.html）。主题给 #page-category 下
+ * 所有 `ul > li` 配了文章列表的样式（大行距 + 左侧圆点），引言正文里的列表
+ * 不该套用，这里还原成普通列表；再与下方的文章列表隔开一点。
+ */
+#page-category .category-intro {
+  margin-bottom: 1.5rem;
+
+  ul > li {
+    line-height: inherit;
+    padding: 0;
+
+    &::before {
+      display: none;
+    }
+  }
+}
