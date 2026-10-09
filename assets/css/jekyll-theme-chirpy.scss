@@ -71,3 +71,15 @@ article > header {
     }
   }
 }
+
+/* 分类页的分组（见 _layouts/category.html 与 _data/category_groups.yml）：组首用分隔线与上一组隔开 */
+#page-category .category-group-head {
+  margin-top: 2.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--main-border-color);
+}
+
+#page-category .category-group-title {
+  font-size: 1.2rem;
+  margin: 0 0 0.75rem;
+}

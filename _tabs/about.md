@@ -53,4 +53,4 @@ Finn（フィン）と申します。日本の東北大学大学院工学研究�
 ### 本站内容
 - [数字信号处理]({{ site.baseurl }}/categories/数字信号处理/)（{{ site.categories['数字信号处理'] | size }} 篇）：FIR / IIR 数字滤波器的原理、设计与 C 语言实现，2013 年「研修A」课程笔记的修订版。
 - [数字图像处理]({{ site.baseurl }}/categories/数字图像处理/)（{{ site.categories['数字图像处理'] | size }} 篇）：以冈萨雷斯《Digital Image Processing》为主要参考的学习笔记，从灰度变换、空间与频域滤波到去噪和图像复原。
-- [色彩科学]({{ site.baseurl }}/categories/色彩科学/)（{{ site.categories['色彩科学'] | size }} 篇）：从颜色的本质与感知讲起，涵盖表色系、色差、色温等色彩科学的基础知识。
+- [色彩科学]({{ site.baseurl }}/categories/色彩科学/)（{{ site.categories['色彩科学'] | size }} 篇）：从颜色的本质与感知讲起，涵盖表色系、色差、色温、色适应等色彩科学的基础知识。
