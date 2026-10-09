@@ -1,0 +1,10 @@
+# 分类页的文章分组（可选），由 _layouts/category.html 读取。
+# 每组可写 title（分组标题）、note（分组说明，Markdown）、posts（文章 slug，即文件名去掉日期）；
+# 写了 title 或 note 的组，前面会加一条分隔线。
+# 不写 posts 的组，收录前面各组都没有列出的其余文章；各组内按发表时间正序。
+
+色彩科学:
+  - posts: [What-is-Color, Color-Mixing, Color-Order-System, CIE-XYZ-Color-System,
+            CIE-RGB-to-XYZ, Colors-From-Three-Primaries, Uniform-Color-Space, Color-Temperature]
+  - note: |
+      以下是后续更新的色彩科学话题。这些文章不再以翻译为蓝本，而是由我挑选话题、整理分享，也是一次与 AI 共同创作的尝试。

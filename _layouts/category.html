@@ -1,9 +1,10 @@
 ---
 layout: page
 # The Category layout
-# 覆盖 jekyll-theme-chirpy 7.2.4 的同名布局，升级主题时注意同步。改动两处：
+# 覆盖 jekyll-theme-chirpy 7.2.4 的同名布局，升级主题时注意同步。改动三处：
 #   1. 标题下显示系列引言（_data/category_intros.yml）
 #   2. 文章按发布时间正序排列：本站每个分类都是一个系列，正序即阅读顺序
+#   3. 可按 _data/category_groups.yml 分组显示，组间加标题与说明；未配置分组的分类只有一组
 ---
 
 {% include lang.html %}
@@ -20,13 +21,40 @@ layout: page
     <div class="category-intro content px-md-3">{{ intro | markdownify }}</div>
   {% endif %}
 
-  <ul class="content ps-0">
-    {% for post in page.posts reversed %}
-      <li class="d-flex justify-content-between px-md-3">
-        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
-        <span class="dash flex-grow-1"></span>
-        {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
-      </li>
-    {% endfor %}
-  </ul>
+  {% assign posts = page.posts | reverse %}
+  {% assign groups = site.data.category_groups[page.title] %}
+  {% assign listed = '' | split: '' %}
+  {% for g in groups %}
+    {% if g.posts %}{% assign listed = listed | concat: g.posts %}{% endif %}
+  {% endfor %}
+  {% assign n = groups | size %}
+  {% if n == 0 %}{% assign n = 1 %}{% endif %}
+
+  {% for i in (1..n) %}
+    {% assign g = groups[forloop.index0] %}
+    {% if g.title or g.note %}
+      <div class="category-group-head">
+        {% if g.title %}
+          <h2 class="category-group-title px-md-3">{{ g.title }}</h2>
+        {% endif %}
+        {% if g.note %}
+          <div class="category-intro content px-md-3">{{ g.note | markdownify }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+    <ul class="content ps-0">
+      {% for post in posts %}
+        {% if g.posts %}
+          {% unless g.posts contains post.slug %}{% continue %}{% endunless %}
+        {% elsif listed contains post.slug %}
+          {% continue %}
+        {% endif %}
+        <li class="d-flex justify-content-between px-md-3">
+          <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+          <span class="dash flex-grow-1"></span>
+          {% include datetime.html date=post.date class='text-muted small text-nowrap' lang=lang %}
+        </li>
+      {% endfor %}
+    </ul>
+  {% endfor %}
 </div>
