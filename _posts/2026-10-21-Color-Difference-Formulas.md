@@ -153,7 +153,7 @@ _CIEDE2000 的等色差轮廓（实线，$\Delta E\_{00} = 1$）与 $\Delta E^{\
 
 $$ \mathcal{L}_1 = \frac{1}{N}\sum_{p} \lVert \hat{\mathbf{y}}_p - \mathbf{y}_p \rVert_1, \qquad \mathcal{L}_2 = \frac{1}{N}\sum_{p} \lVert \hat{\mathbf{y}}_p - \mathbf{y}_p \rVert_2^2 $$
 
-式中 $\hat{\mathbf{y}}_p$、$\mathbf{y}_p$ 分别是网络输出与目标在像素 $p$ 处的 RGB 向量，$N$ 是像素数。这里的 RGB 可以是**线性 sRGB**，即与光的强度成正比的值；也可以是经过伽马编码的 **sRGB 编码值**，8 位图像文件里存的是后者（传递函数见[《白点切换》](/posts/Chromatic-Adaptation/)一文）。
+式中 $\hat{\mathbf{y}}_p$、$\mathbf{y}_p$ 分别是网络输出与目标在像素 $p$ 处的 RGB 向量，$N$ 是像素数。这里的 RGB 可以是**线性 sRGB**，即与光的强度成正比的值；也可以是经过伽马编码的 **sRGB 编码值**，8 位图像文件里存的是后者。两者之间的换算称为传递函数，sRGB 的传递函数在暗部是一小段直线，其余部分是带偏移的 1/2.4 次幂。
 
 单看一个像素，$\lVert \hat{\mathbf{y}}_p - \mathbf{y}_p \rVert_2$ 就是两个颜色在 RGB 空间里的欧氏距离，与 $\Delta E^{\ast}\_{ab}$ 的形式完全相同，只是 CIELAB 换成了 RGB；L2 损失取它的平方，L1 则换成三个分量之差的绝对值之和。训练网络时，我们其实一直在用色差，只是用的是「RGB 里的 $\Delta E$」。有的工作训练时用 RGB 上的均方误差，评价时却报告 CIELAB 里的 $\Delta E$（Zeng et al.，2022）。
 
