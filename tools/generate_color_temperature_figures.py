@@ -240,16 +240,32 @@ def clip_segment(p0, p1, xr, yr):
 
 
 def clipped_polyline(d, ax, pts, fill, width, dash=None):
-    """按数据坐标逐段裁剪后再画折线；dash 为 (dash, gap) 时画虚线。"""
+    """按数据坐标逐段裁剪后再画折线；dash 为 (dash, gap) 时画虚线。
+
+    虚实的相位跨段累计：折线由许多短于一个划长的小段组成时，逐段各画一次虚线会全部画成实线。
+    """
+    phase = 0.0
     for a, b in zip(pts[:-1], pts[1:]):
         seg = clip_segment(a, b, ax.xr, ax.yr)
         if seg is None:
             continue
         pa, pb = ax.px(*seg[0]), ax.px(*seg[1])
-        if dash:
-            dashed(d, pa, pb, fill=fill, width=width, dash=dash[0], gap=dash[1])
-        else:
+        if not dash:
             line(d, (pa[0], pa[1], pb[0], pb[1]), fill=fill, width=width)
+            continue
+        on, period = dash[0], dash[0] + dash[1]
+        total = math.hypot(pb[0] - pa[0], pb[1] - pa[1])
+        if total == 0:
+            continue
+        ux, uy = (pb[0] - pa[0]) / total, (pb[1] - pa[1]) / total
+        t = 0.0
+        while t < total:
+            pos = phase % period
+            e = min(t + (on - pos if pos < on else period - pos), total)
+            if pos < on:
+                line(d, (pa[0] + ux * t, pa[1] + uy * t, pa[0] + ux * e, pa[1] + uy * e), fill=fill, width=width)
+            phase += e - t
+            t = e
 
 
 # ==========================================================================

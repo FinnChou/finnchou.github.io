@@ -278,13 +278,13 @@ def fig_filter(out):
         arrow(d, a0, a1, fill=BLUE, width=2, head=9)
         ellipse(d, (p1[0] - 4, p1[1] - 4, p1[0] + 4, p1[1] + 4), fill=BLUE)
         mx, my = (a0[0] + a1[0]) / 2 - nx * 12, (a0[1] + a1[1]) / 2 - ny * 12
-        text(d, (mx, my), "%d → %d K" % (T, round(T2, -1)), fs, fill=BLUE, anchor="lt")
+        text(d, (mx, my), "%d → %d K" % (T, round(T2)), fs, fill=BLUE, anchor="lt")
     text(d, ((box[0] + box[2]) / 2, 489), "u", ifont(17))
     text(d, (box[0] - 40, box[1]), "v", ifont(17))
     text(d, (W / 2, 24), "色温转换滤镜：透射率与色度的位移", fx)
-    text(d, (W / 2, 536), "三支箭头在 uv 图上的长度相近：开尔文的变化各不相同（+710、+1720、+4760 K），倒数色温的变化都在 -131 mired 左右",
+    text(d, (W / 2, 536), "三支箭头在 uv 图上的长度相近：开尔文的变化各不相同（+710、+1721、+4755 K），倒数色温的变化都在 -131 mired 左右",
          fs, fill=MUTED)
-    text(d, (W / 2, 560), "透射率按最大值归一；理想化的滤镜 τ(λ) = exp(-c₂ ΔM / λ) 在维恩近似下恰好把倒数色温平移 ΔM".replace("₂", "2"),
+    text(d, (W / 2, 560), "透射率按最大值归一（常数因子只影响亮度，不影响色度）；在维恩近似下，理想化的滤镜恰好把倒数色温平移 ΔM",
          fs, fill=MUTED)
     finish(im, os.path.join(out, "conversion-filter.png"))
 
@@ -372,7 +372,7 @@ def check():
     table = robertson_table()
     for in_m in (True, False):
         worst = (0, None)
-        for T in np.exp(np.linspace(math.log(1700), math.log(25000), 60)):
+        for T in np.exp(np.linspace(math.log(2000), math.log(10000), 200)):
             u0, v0 = bb_uv(T)
             nx, ny = isotherm_normal(T)
             for duv in (-0.02, -0.01, 0, 0.01, 0.02):
