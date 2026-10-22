@@ -20,7 +20,7 @@ generate_color_temperature_figures.py 导入。
       每行为 测试照明下的 u'v'、参照照明下实测对应色的 u'v'
     - 标准白点：A、D50、D65 取 CIE 15:2004 表值（2°）；
       E 为等能白 (1/3, 1/3)；DCI 白取 SMPTE RP 431-2 的 (0.314, 0.351)
-    - 适应矩阵：Bradford（Lam, 1985）、Hunt-Pointer-Estévez（按 D65 归一，
+    - 适应矩阵：Bradford（Lam, 1985）、Hunt-Pointer-Estévez（按等能白归一，
       CIECAM02 所用）、CAT02（CIE 159:2004）
 """
 
