@@ -1,0 +1,193 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 388" width="900" height="388" font-family="'PingFang SC','Hiragino Sans GB','Microsoft YaHei','Noto Sans CJK SC','Source Han Sans SC',sans-serif" font-size="13.5" fill="#2d303e">
+<rect width="900" height="388" fill="#ffffff"/>
+<rect x="16" y="14" width="262" height="360" rx="8" fill="#eef0f7" stroke="#c6ccdc"/>
+<text x="147.0" y="40" text-anchor="middle" font-size="16" font-weight="600">基准</text>
+<text x="147.0" y="61" text-anchor="middle" fill="#878c9b">光圈 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">N</tspan>，时间 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">t</tspan>，感光度 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">S</tspan></text>
+<line x1="85" y1="73" x2="81" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="97" y1="73" x2="93" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="109" y1="73" x2="105" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="121" y1="73" x2="117" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="133" y1="73" x2="129" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="145" y1="73" x2="141" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="157" y1="73" x2="153" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="169" y1="73" x2="165" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="181" y1="73" x2="177" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="91" y1="87" x2="87" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="103" y1="87" x2="99" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="115" y1="87" x2="111" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="127" y1="87" x2="123" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="139" y1="87" x2="135" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="151" y1="87" x2="147" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="163" y1="87" x2="159" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="175" y1="87" x2="171" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="187" y1="87" x2="183" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M104.0 106 L164.0 106 L141 140 L127 140 Z" fill="#ffffff" stroke="#2d303e" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="134" y1="140" x2="134" y2="270" stroke="#7fa6dd" stroke-width="3"/>
+<rect x="104.0" y="270" width="60.0" height="40" fill="#a9c8f0"/>
+<path d="M103.0 150 V310 H165.0 V150" fill="none" stroke="#2d303e" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="134" y="295.0" text-anchor="middle" font-size="15"><tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan></text>
+<line x1="104.0" y1="320" x2="164.0" y2="320" stroke="#878c9b" stroke-width="1.3"/>
+<path d="M104.0 320 l6 -4 v8 Z M164.0 320 l-6 -4 v8 Z" fill="#878c9b"/>
+<circle cx="58" cy="128" r="10.5" fill="#ffffff" stroke="#2d303e" stroke-width="1.5"/>
+<path d="M58 128 L58 117.5 A10.5 10.5 0 0 1 68.50 128.00 Z" fill="#878c9b"/>
+<line x1="176" y1="310" x2="176" y2="150" stroke="#2d303e" stroke-width="1.6"/>
+<line x1="176" y1="310" x2="185" y2="310" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="290" x2="181" y2="290" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="270" x2="181" y2="270" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="250" x2="181" y2="250" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="230" x2="185" y2="230" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="210" x2="181" y2="210" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="190" x2="181" y2="190" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="170" x2="181" y2="170" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="176" y1="150" x2="185" y2="150" stroke="#2d303e" stroke-width="1.3"/>
+<text x="189" y="314" font-size="11" fill="#878c9b">0</text>
+<text x="189" y="154" font-size="11" fill="#878c9b">8</text>
+<line x1="165.0" y1="270" x2="176" y2="270" stroke="#4a4f9e" stroke-width="1.2" stroke-dasharray="3 3"/>
+<path d="M187 270 l8 -5 v10 Z" fill="#4a4f9e"/>
+<text x="198" y="275" font-weight="600" fill="#4a4f9e">读数 2</text>
+<text x="147.0" y="359" text-anchor="middle" font-size="14">曝光量 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan>，读数 2</text>
+<text x="196" y="91" fill="#878c9b">景物亮度 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">L</tspan></text>
+<text x="172" y="128" fill="#878c9b">光圈</text>
+<text x="58" y="155" text-anchor="middle" fill="#878c9b">时间 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">t</tspan></text>
+<text x="95" y="295" text-anchor="end" fill="#878c9b">曝光量</text>
+<text x="134" y="337" text-anchor="middle" fill="#878c9b">截面积 ∝ 1/<tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">S</tspan></text>
+<text x="200" y="154" fill="#878c9b" font-size="12">满量程</text>
+<rect x="290" y="14" width="190" height="360" rx="8" fill="#eef0f7" stroke="#c6ccdc"/>
+<text x="385.0" y="40" text-anchor="middle" font-size="16" font-weight="600">光圈开大一档</text>
+<text x="385.0" y="61" text-anchor="middle" fill="#d68228">漏斗口面积 ×2</text>
+<line x1="305" y1="73" x2="301" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="317" y1="73" x2="313" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="329" y1="73" x2="325" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="341" y1="73" x2="337" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="353" y1="73" x2="349" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="365" y1="73" x2="361" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="377" y1="73" x2="373" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="389" y1="73" x2="385" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="401" y1="73" x2="397" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="413" y1="73" x2="409" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="425" y1="73" x2="421" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="311" y1="87" x2="307" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="323" y1="87" x2="319" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="335" y1="87" x2="331" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="347" y1="87" x2="343" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="359" y1="87" x2="355" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="371" y1="87" x2="367" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="383" y1="87" x2="379" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="395" y1="87" x2="391" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="407" y1="87" x2="403" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="419" y1="87" x2="415" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="431" y1="87" x2="427" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M306.0 106 L426.0 106 L373 140 L359 140 Z" fill="#fbe9d2" stroke="#d68228" stroke-width="2.2" stroke-linejoin="round"/>
+<line x1="366" y1="140" x2="366" y2="230" stroke="#7fa6dd" stroke-width="3"/>
+<rect x="336.0" y="230" width="60.0" height="80" fill="#a9c8f0"/>
+<path d="M335.0 150 V310 H397.0 V150" fill="none" stroke="#2d303e" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="366" y="275.0" text-anchor="middle" font-size="15">2<tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan></text>
+<circle cx="308" cy="128" r="10.5" fill="#ffffff" stroke="#2d303e" stroke-width="1.5"/>
+<path d="M308 128 L308 117.5 A10.5 10.5 0 0 1 318.50 128.00 Z" fill="#878c9b"/>
+<line x1="408" y1="310" x2="408" y2="150" stroke="#2d303e" stroke-width="1.6"/>
+<line x1="408" y1="310" x2="417" y2="310" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="290" x2="413" y2="290" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="270" x2="413" y2="270" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="250" x2="413" y2="250" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="230" x2="417" y2="230" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="210" x2="413" y2="210" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="190" x2="413" y2="190" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="170" x2="413" y2="170" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="408" y1="150" x2="417" y2="150" stroke="#2d303e" stroke-width="1.3"/>
+<text x="421" y="314" font-size="11" fill="#878c9b">0</text>
+<text x="421" y="154" font-size="11" fill="#878c9b">8</text>
+<line x1="397.0" y1="230" x2="408" y2="230" stroke="#4a4f9e" stroke-width="1.2" stroke-dasharray="3 3"/>
+<path d="M419 230 l8 -5 v10 Z" fill="#4a4f9e"/>
+<text x="430" y="235" font-weight="600" fill="#4a4f9e">读数 4</text>
+<text x="385.0" y="359" text-anchor="middle" font-size="14">曝光量 2<tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan>，读数 4</text>
+<rect x="492" y="14" width="190" height="360" rx="8" fill="#eef0f7" stroke="#c6ccdc"/>
+<text x="587.0" y="40" text-anchor="middle" font-size="16" font-weight="600">曝光时间增加一档</text>
+<text x="587.0" y="61" text-anchor="middle" fill="#d68228">接雨的时间 ×2</text>
+<line x1="519" y1="73" x2="515" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="531" y1="73" x2="527" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="543" y1="73" x2="539" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="555" y1="73" x2="551" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="567" y1="73" x2="563" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="579" y1="73" x2="575" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="591" y1="73" x2="587" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="603" y1="73" x2="599" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="615" y1="73" x2="611" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="525" y1="87" x2="521" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="537" y1="87" x2="533" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="549" y1="87" x2="545" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="561" y1="87" x2="557" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="573" y1="87" x2="569" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="585" y1="87" x2="581" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="597" y1="87" x2="593" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="609" y1="87" x2="605" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="621" y1="87" x2="617" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M538.0 106 L598.0 106 L575 140 L561 140 Z" fill="#ffffff" stroke="#2d303e" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="568" y1="140" x2="568" y2="230" stroke="#7fa6dd" stroke-width="3"/>
+<rect x="538.0" y="230" width="60.0" height="80" fill="#a9c8f0"/>
+<path d="M537.0 150 V310 H599.0 V150" fill="none" stroke="#2d303e" stroke-width="2.2" stroke-linejoin="round"/>
+<text x="568" y="275.0" text-anchor="middle" font-size="15">2<tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan></text>
+<circle cx="510" cy="128" r="10.5" fill="#ffffff" stroke="#d68228" stroke-width="1.5"/>
+<path d="M510 128 L510 117.5 A10.5 10.5 0 0 1 510.00 138.50 Z" fill="#d68228"/>
+<line x1="610" y1="310" x2="610" y2="150" stroke="#2d303e" stroke-width="1.6"/>
+<line x1="610" y1="310" x2="619" y2="310" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="290" x2="615" y2="290" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="270" x2="615" y2="270" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="250" x2="615" y2="250" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="230" x2="619" y2="230" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="210" x2="615" y2="210" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="190" x2="615" y2="190" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="170" x2="615" y2="170" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="610" y1="150" x2="619" y2="150" stroke="#2d303e" stroke-width="1.3"/>
+<text x="623" y="314" font-size="11" fill="#878c9b">0</text>
+<text x="623" y="154" font-size="11" fill="#878c9b">8</text>
+<line x1="599.0" y1="230" x2="610" y2="230" stroke="#4a4f9e" stroke-width="1.2" stroke-dasharray="3 3"/>
+<path d="M621 230 l8 -5 v10 Z" fill="#4a4f9e"/>
+<text x="632" y="235" font-weight="600" fill="#4a4f9e">读数 4</text>
+<text x="587.0" y="359" text-anchor="middle" font-size="14">曝光量 2<tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan>，读数 4</text>
+<rect x="694" y="14" width="190" height="360" rx="8" fill="#eef0f7" stroke="#c6ccdc"/>
+<text x="789.0" y="40" text-anchor="middle" font-size="16" font-weight="600">感光度提高一档</text>
+<text x="789.0" y="61" text-anchor="middle" fill="#d68228">杯子截面积 ×1/2</text>
+<line x1="721" y1="73" x2="717" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="733" y1="73" x2="729" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="745" y1="73" x2="741" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="757" y1="73" x2="753" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="769" y1="73" x2="765" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="781" y1="73" x2="777" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="793" y1="73" x2="789" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="805" y1="73" x2="801" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="817" y1="73" x2="813" y2="83" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="727" y1="87" x2="723" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="739" y1="87" x2="735" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="751" y1="87" x2="747" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="763" y1="87" x2="759" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="775" y1="87" x2="771" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="787" y1="87" x2="783" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="799" y1="87" x2="795" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="811" y1="87" x2="807" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<line x1="823" y1="87" x2="819" y2="97" stroke="#7fa6dd" stroke-width="1.6" stroke-linecap="round"/>
+<path d="M740.0 106 L800.0 106 L777 140 L763 140 Z" fill="#ffffff" stroke="#2d303e" stroke-width="1.8" stroke-linejoin="round"/>
+<line x1="770" y1="140" x2="770" y2="230" stroke="#7fa6dd" stroke-width="3"/>
+<rect x="755.0" y="230" width="30.0" height="80" fill="#a9c8f0"/>
+<path d="M754.0 150 V310 H786.0 V150" fill="none" stroke="#d68228" stroke-width="2.6" stroke-linejoin="round"/>
+<text x="770" y="275.0" text-anchor="middle" font-size="15"><tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan></text>
+<line x1="755.0" y1="320" x2="785.0" y2="320" stroke="#d68228" stroke-width="1.3"/>
+<path d="M755.0 320 l6 -4 v8 Z M785.0 320 l-6 -4 v8 Z" fill="#d68228"/>
+<circle cx="712" cy="128" r="10.5" fill="#ffffff" stroke="#2d303e" stroke-width="1.5"/>
+<path d="M712 128 L712 117.5 A10.5 10.5 0 0 1 722.50 128.00 Z" fill="#878c9b"/>
+<line x1="812" y1="310" x2="812" y2="150" stroke="#2d303e" stroke-width="1.6"/>
+<line x1="812" y1="310" x2="821" y2="310" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="290" x2="817" y2="290" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="270" x2="817" y2="270" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="250" x2="817" y2="250" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="230" x2="821" y2="230" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="210" x2="817" y2="210" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="190" x2="817" y2="190" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="170" x2="817" y2="170" stroke="#2d303e" stroke-width="1.3"/>
+<line x1="812" y1="150" x2="821" y2="150" stroke="#2d303e" stroke-width="1.3"/>
+<text x="825" y="314" font-size="11" fill="#878c9b">0</text>
+<text x="825" y="154" font-size="11" fill="#878c9b">8</text>
+<line x1="786.0" y1="230" x2="812" y2="230" stroke="#4a4f9e" stroke-width="1.2" stroke-dasharray="3 3"/>
+<path d="M823 230 l8 -5 v10 Z" fill="#4a4f9e"/>
+<text x="834" y="235" font-weight="600" fill="#4a4f9e">读数 4</text>
+<text x="789.0" y="359" text-anchor="middle" font-size="14"><tspan fill="#d68228">曝光量仍为 <tspan font-family="'Times New Roman',Times,serif" font-style="italic" font-size="115%">H</tspan></tspan>，读数 4</text>
+</svg>

@@ -1,0 +1,43 @@
+/*
+ * figures.css — 《光谱渲染：给一间像素小屋打光》的静态插图
+ *
+ * 插图沿用演示（demo.css）的类名与配色：画面放在 .spl-stage 里，曲线是 .spl-chart。
+ * 这里只补上卡片本身的变量与几种排版。颜色跟随 Chirpy 的 CSS 变量，深色模式同演示。
+ */
+.spl-still {
+  --spl-text: var(--text-color, #34343c);
+  --spl-muted: var(--text-muted-color, #757575);
+  --spl-line: var(--main-border-color, #e3e6ea);
+  --spl-bg: var(--card-bg, #fff);
+  --spl-accent: #4a6fd1;
+  --spl-main: #c0703a;
+  --spl-joint: #8a8f98;
+  --spl-grid: rgba(127, 127, 127, 0.2);
+  border: 1px solid var(--spl-line);
+  border-radius: 10px;
+  background: var(--spl-bg);
+  color: var(--spl-text);
+  padding: 0.9rem 1rem 0.7rem;
+  margin: 1.2rem 0 0.5rem;
+  font-size: 0.92rem;
+}
+html[data-mode='dark'] .spl-still { --spl-accent: #8aa4f0; --spl-main: #e0965f; --spl-joint: #a3a8b2; }
+@media (prefers-color-scheme: dark) {
+  html:not([data-mode='light']) .spl-still { --spl-accent: #8aa4f0; --spl-main: #e0965f; --spl-joint: #a3a8b2; }
+}
+/* The theme wraps each image in a link to its lightbox and moves the class there. */
+.spl-still .spl-stage a, .spl-still .spl-stage img { display: block; width: 100%; height: auto; margin: 0; }
+.spl-still .spl-stage img { image-rendering: pixelated; }
+.spl-stages { display: grid; gap: 0.5rem; grid-template-columns: repeat(var(--cols, 2), minmax(0, 1fr)); }
+.spl-charts.spl-two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.spl-charts.spl-one { grid-template-columns: minmax(0, 1fr); }
+.spl-chart .spl-solid { fill: var(--spl-grid); stroke: var(--spl-muted); stroke-width: 1; }
+.spl-chart .spl-ray { stroke: var(--spl-text); stroke-width: 1; fill: none; }
+.spl-chart .spl-label { fill: var(--spl-text); font-size: 11px; }
+.spl-chart .spl-note { fill: var(--spl-muted); font-size: 10px; }
+.spl-split { display: grid; gap: 0.6rem 1rem; grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; }
+.spl-split .spl-fig { align-self: center; }
+@media (max-width: 640px) {
+  .spl-stages { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .spl-stages.spl-one, .spl-split, .spl-charts.spl-two { grid-template-columns: minmax(0, 1fr); }
+}
